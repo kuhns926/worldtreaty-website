@@ -1,1 +1,410 @@
-World Treaty of Earth
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Treaty of Earth | The Global Citizens' Charter</title>
+    <style>
+        /* CSS Variables for the "Glass Ledger" Theme */
+        :root {
+            --slate-900: #0f172a;
+            --slate-800: #1e293b;
+            --slate-100: #f1f5f9;
+            --steel-blue: #3b82f6;
+            --text-main: #334155;
+            --text-muted: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.7;
+            color: var(--text-main);
+            background-color: var(--slate-100);
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--slate-900);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            color: white;
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a {
+            color: var(--slate-100);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--steel-blue);
+        }
+
+        /* Hero Header */
+        header {
+            background-color: var(--slate-800);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            border-bottom: 4px solid var(--steel-blue);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        header p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--slate-100);
+            font-weight: 300;
+        }
+
+        /* Main Content Areas */
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        section {
+            margin-bottom: 5rem;
+            background: white;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--slate-900);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--slate-100);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: var(--slate-800);
+            font-size: 1.25rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+        }
+
+        .highlight-box {
+            background-color: var(--slate-100);
+            border-left: 4px solid var(--steel-blue);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Accordion for ALRA and FAQ */
+        details {
+            background-color: var(--slate-100);
+            margin-bottom: 1rem;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        summary {
+            padding: 1.25rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--slate-900);
+            background-color: #e2e8f0;
+            list-style: none;
+            position: relative;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary:hover {
+            background-color: #cbd5e1;
+        }
+
+        details[open] summary {
+            border-bottom: 1px solid #cbd5e1;
+        }
+
+        details .details-content {
+            padding: 1.5rem;
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            border-top: none;
+        }
+
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--slate-900);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="nav-logo">WORLD TREATY OF EARTH</a>
+            <div class="nav-links">
+                <a href="#preamble">Preamble</a>
+                <a href="#pillars">The 4 Pillars</a>
+                <a href="#alra">ALRA</a>
+                <a href="#faq">FAQ</a>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <h1>World Treaty of Earth</h1>
+        <p>A Master Framework for Automated Accountability, Ecological Restoration, and Working-Class Reinvestment</p>
+    </header>
+
+    <main>
+        <!-- PREAMBLE SECTION -->
+        <section id="preamble">
+            <h2>Preamble</h2>
+            <p>For generations, the devastating costs of war and ecological ruin have been outsourced to the working class, while the architects of that destruction hide behind diplomatic immunity, state treasuries, and geopolitical vetoes. The world can no longer afford an international system where peace is treated as a political favor and accountability is lost in the machinery of corrupt governments. We stand at a necessary turning point in human history, rejecting the fragile, easily broken treaties of the past in favor of a new, undeniable gravity: an automated system of economic consequence where aggression guarantees financial ruin, and the power to govern the global commons is permanently secured by the majority of humanity.</p>
+            
+            <p>The World Treaty of Earth charter is a declaration of systemic reform, built not on empty diplomacy, but on the grounded reality of heavy industry, honest labor, and absolute liability. By seizing the hidden wealth of those who ignite conflict and routing it entirely outside of state bureaucracies, we channel restitution directly into the hands of the unionized workers and aid organizations who physically repair the damage and care for the populace. This is our blueprint for a world where peace is mathematically enforced, where sovereign boundaries are respected without sacrificing the environment, and where the future is rebuilt—steel by steel, and foundation by foundation—by making those accountable who cause the destruction of our planet in the first place.</p>
+        </section>
+
+        <!-- EXECUTIVE SUMMARY & PILLARS SECTION -->
+        <section id="pillars">
+            <h2>Executive Summary</h2>
+            <div class="highlight-box">
+                <strong>Core Objective:</strong> To establish a bottom-up, grassroots global framework that permanently links human rights, economic stability, and environmental protection, bypassing traditional geopolitical gridlock and replacing military conflict with automated economic leverage.
+            </div>
+
+            <h3>Pillar I: The Democratic Structure (The 51% Double-Majority)</h3>
+            <p>To prevent the gridlock of legacy systems like the UN Security Council while ensuring democratic fairness, the Charter utilizes a dual-lock voting mechanism:</p>
+            <ul>
+                <li><strong>The Tipping Point:</strong> Global initiatives, emergency responses, or financial penalties become binding law the moment 51% of participating nations double-majority vote in favor.</li>
+                <li><strong>The Population Safeguard:</strong> To prevent a coalition of microstates from overriding the global consensus, passing votes require an absolute demographic mandate. Regardless of how many nations participate in the Charter, a measure only becomes binding if the specific nations voting in favor possess a combined population that meets or exceeds 51% of the total human population on Earth.</li>
+            </ul>
+
+            <h3>Pillar II: Automated Financial Enforcement</h3>
+            <p>The system holds powerful nations and corporate polluters accountable without military intervention, utilizing pre-programmed economic consequences:</p>
+            <ul>
+                <li><strong>Targeted Asset Seizure:</strong> Compliant nations are legally required to freeze the foreign currency reserves and overseas investments of violating states.</li>
+                <li><strong>The Oligarch-First Extraction:</strong> Seizures specifically target the offshore accounts, luxury real estate, and corporate assets of political leaders and oligarchs, shielding the civilian working class from immediate economic collapse.</li>
+                <li><strong>The Eco-Tariff:</strong> Non-compliant nations face a unified, mandatory tariff on all exports, rendering their goods too expensive for global trade until restitution is paid.</li>
+            </ul>
+
+            <h3>Pillar III: The Aggressor Liability & Restitution Act (ALRA)</h3>
+            <p>A specialized legal doctrine designed to make the long-term cost of an offensive war or ecological disaster economically ruinous for the perpetrators:</p>
+            <ul>
+                <li><strong>Absolute Liability:</strong> Aggressors are billed for all destroyed infrastructure and displaced citizens, regardless of military outcomes.</li>
+                <li><strong>The Human Cost Ledger:</strong> Financial penalties include automatic daily stipends routed directly to neighboring nations hosting refugees, alongside mandatory funding for generational health trusts and affected veterans and civilians.</li>
+                <li><strong>The Peace Escrow:</strong> To prevent conflict flare-ups, seized assets are held in a blind escrow during ceasefires and released back to the aggressor incrementally, strictly contingent on continued demilitarization and peace.</li>
+            </ul>
+
+            <h3>Pillar IV: Independent Procurement & The Labor Mandate</h3>
+            <p>Diplomatic treaties do not rebuild ecosystems; heavy industrial competence does. To ensure high-skill execution on complex projects—such as the repair of water systems, power plants, and industrial utility grids—all cleanup and procurement operates through an insulated loop:</p>
+            <ul>
+                <li><strong>The Three-Bid Middle Selection:</strong> For any infrastructure or ecological repair, the framework requires a minimum of three competitive bids and automatically selects the middle bid. This enforces honest cost-engineering, eliminating both corporate price-gouging and dangerous corner-cutting.</li>
+                <li><strong>Union Workforce Mandate:</strong> All contracts are exclusively awarded to Union Contractors, guaranteeing high-skill execution, jobsite safety, and fair prevailing wages.</li>
+                <li><strong>The Hybrid Mentorship Model:</strong> To stimulate the local economy, a mandated 75% of labor hours must be fulfilled by the workforce of the affected nation. Recognizing that conflict zones often suffer from severe labor depletion due to casualties or displacement, this mandate includes a Cascading Labor Failsafe: if the local labor pool is mathematically exhausted, the remainder of the 75% quota must be filled first by displaced citizens in neighboring refugee zones, and second by regional union workers in adjacent neutral countries. The remaining 25% of the total workforce is strictly reserved for highly specialized international union crews who act as foremen, manage complex hazardous materials, and provide vital apprenticeship training to the localized crews.</li>
+            </ul>
+        </section>
+
+        <!-- ALRA SECTION (ACCORDION TABS) -->
+        <section id="alra">
+            <h2>The Aggressor Liability & Restitution Act (ALRA)</h2>
+            <p><strong>Purpose:</strong> This law guarantees that any government that starts a war will pay for the damage they cause. It ensures that the leaders who start the war lose their wealth, while protecting everyday working citizens. It makes peace the only affordable choice.</p>
+            
+            <details>
+                <summary>Article 1: You Break It, You Buy It (Total Liability)</summary>
+                <div class="details-content">
+                    <p><strong>The Rule:</strong> If the 51% Double-Majority votes that a country has started an offensive war, that attacking country is officially in debt for all the damage.</p>
+                    <p><strong>No Exceptions:</strong> It does not matter who wins the battles. The attacker must pay to fix every destroyed building, bridge, water pipe, power station, and natural habitat.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Article 2: Targeting the Architects (Where the Money Comes From)</summary>
+                <div class="details-content">
+                    <p><strong>The Architects Only:</strong> Money will never be extracted from everyday working people or career military personnel. To pay the debt, the global system strictly targets the top of the food chain—the Sovereign Architects. This includes freezing the foreign bank accounts, luxury estates, and corporate assets of the top-level political leaders, state-aligned oligarchs, and billionaires who hold the ultimate authority or provide the financial backing for the war.</p>
+                    <p><strong>The Military Exemption:</strong> The Charter recognizes that militaries do not declare wars; politicians do. Therefore, career military personnel and battlefield commanders are strictly exempt from personal financial seizure.</p>
+                    <p><strong>The Civilian Shield:</strong> Money used for basic domestic needs—like civilian food imports, medicine, and local pensions—can never be touched.</p>
+                    <p><strong>The Macroeconomic Limit:</strong> The total penalty taken in one year will never exceed 10% of the attacking country's total yearly income (GDP). The system defunds the ruling class's war machine, not the local hospitals.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Article 3: Paying for the People (The Human Cost)</summary>
+                <div class="details-content">
+                    <p><strong>The Refugee Fee:</strong> The attacking country must pay a daily fee for every person forced to flee their home to escape the war. This money goes directly to verified organizations in the neighboring regions feeding and housing those refugees.</p>
+                    <p><strong>Healthcare for All:</strong> The attacking country must fund long-term medical care and rehabilitation trusts for all injured civilians and veterans on both sides of the conflict.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Article 4: Fixing the Damage (Fair Rebuilding)</summary>
+                <div class="details-content">
+                    <p><strong>No Corrupt Spending:</strong> Funds taken from attackers are managed by an independent, non-profit organization. Politicians are not allowed to touch or direct these funds.</p>
+                    <p><strong>Honest Pricing:</strong> Every rebuilding contract requires a minimum of three competitive bids, with the system automatically selecting the middle bid. This prevents contractor corner-cutting (lowest bid) and price-gouging (highest bid).</p>
+                    <p><strong>Union Labor Mandate:</strong> All rebuilding work must be awarded to union contractors to guarantee safe jobs and fair prevailing wages. Local workers from the damaged areas must be hired first to rebuild their own communities.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Article 5: Keeping the Peace (The Escrow Account)</summary>
+                <div class="details-content">
+                    <p><strong>The Hold:</strong> When fighting stops, seized funds are not simply returned. They are held safely in a "Peace Escrow" account.</p>
+                    <p><strong>Earning It Back:</strong> If the attacking country stays peaceful and demilitarizes, escrowed funds are incrementally released back into their local civilian economy to build green, peacetime infrastructure.</p>
+                    <p><strong>The Recidivism Penalty:</strong> If the attacking country breaks the peace and restarts hostilities, their total debt is instantly doubled, and all escrowed funds are permanently forfeited.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Article 6: The Zero-State Routing Protocol (No Government Payouts)</summary>
+                <div class="details-content">
+                    <p><strong>The Firewall:</strong> Under no circumstances will any penalty funds, restitution money, or refugee fees be deposited into the treasury, central bank, or controlled accounts of any national or local government.</p>
+                    <p><strong>Direct-to-Service Endpoints:</strong> All funds are paid directly to operational providers:
+                        <ul>
+                            <li><strong>For Rebuilding:</strong> Payments go strictly and directly to approved Union Contractors executing the three-bid contracts.</li>
+                            <li><strong>For Refugees:</strong> Payments go directly to verified aid organizations, humanitarian camp operators, and food distribution networks managing the crisis.</li>
+                            <li><strong>For Healthcare:</strong> Payments go directly to hospitals, clinics, and medical trusts providing direct care.</li>
+                        </ul>
+                    </p>
+                    <p><strong>Municipal Services Exception:</strong> If local public infrastructure is overburdened by refugee surges, the system pays local public utility entities directly on a strict itemized-contract basis rather than issuing lump-sum political grants.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Article 7: The Anti-Debt Guarantee (No Debt Traps)</summary>
+                <div class="details-content">
+                    <p><strong>The Rule:</strong> Rebuilding funds are grants, not loans. Host nations and victim nations will never owe a single penny to the Independent Conglomerate or any participating country.</p>
+                    <p><strong>Upfront Capital:</strong> Because funding is extracted entirely from the aggressor’s seized wealth, heavy commercial, hospital, and utility projects are fully paid upfront, preventing foreign financial leverage or debt-trap diplomacy.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Article 8: Unanchored Operations (Access & Security)</summary>
+                <div class="details-content">
+                    <p><strong>The Border Agreement:</strong> By ratifying the Charter, member nations agree to grant open operational access to the Independent Conglomerate’s union contractors and aid workers during an active crisis.</p>
+                    <p><strong>Unanchored Principle:</strong> The Conglomerate operates as an independent structure on local soil. It hires local workers and builds the foundation of the local economy, but its capital and management do not penetrate the local government's political machinery.</p>
+                    <p><strong>Perimeter Security:</strong> Host nation militaries are required to provide external perimeter security for construction sites and humanitarian installations.</p>
+                    <p><strong>Enforcement:</strong> If a host government attempts to seize equipment, harm personnel, or block border access, project execution pauses immediately, and the host government faces Eco-Tariffs until safety and access are restored.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Article 9: The Glass Ledger (Absolute Transparency)</summary>
+                <div class="details-content">
+                    <p><strong>Real-Time Tracking:</strong> Every single financial transaction is tracked on an open-source, publicly viewable digital ledger.</p>
+                    <p><strong>Public Accountability:</strong> Any citizen worldwide can inspect a project and verify which contractor received a contract, the exact line-item costs, and the precise hourly wages paid to the workforce on site.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Article 10: Generational Stewardship (The Maintenance Covenant)</summary>
+                <div class="details-content">
+                    <p><strong>The Rule:</strong> Infrastructure and ecological stability are not temporary political achievements; they are permanent physical requirements. Rebuilding a system is only the first phase of restitution. Therefore, the Charter mandates that the independent framework does not simply rebuild and abandon a recovering region.</p>
+                    <p><strong>The Endowment:</strong> A mandatory 5% of all seized aggressor assets will bypass immediate construction costs and be placed into an irrevocable, localized Maintenance Endowment. This ensures that the financial burden of long-term upkeep never falls upon the victim nation or its citizens.</p>
+                    <p><strong>The 100-Year Guarantee:</strong> This trust is dedicated exclusively to funding the ongoing operational training, local union apprenticeships, and physical maintenance of the newly repaired utility grids, water systems, and ecological habitats. It legally guarantees that the local working class retains both the financial capital and the heavy industrial competence to sustain their own infrastructure for a century to come.</p>
+                </div>
+            </details>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq">
+            <h2>Defensive FAQ: Anticipating Criticisms</h2>
+            
+            <details>
+                <summary>Democracy & Power Dynamics</summary>
+                <div class="details-content">
+                    <p><strong>Q: Won’t the 51% Double-Majority allow heavily populated countries like China and India to dictate rules for the rest of the world?</strong><br>
+                    A: No. That is precisely why the Double-Majority exists. While India and China have large populations, they represent only two state votes. To pass any measure, they would still need to convince over 90 other sovereign nations to vote in favor to meet the 51% state threshold. The dual-lock system physically prevents both the "Tyranny of the Populous" and the "Tyranny of Microstates."</p>
+                    <p><strong>Q: What stops a coalition of 51% of nations from unfairly targeting and bankrupting a minority nation over political disagreements?</strong><br>
+                    A: The Charter is strictly triggered by objective physical violations—specifically, offensive military aggression and catastrophic ecological destruction. It is not an instrument for ideological, cultural, or trade disputes. Furthermore, the 10% Macroeconomic Floor ensures that even under maximum penalties, a nation’s civilian economy cannot be collapsed.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Economic Enforcement & Hidden Wealth</summary>
+                <div class="details-content">
+                    <p><strong>Q: Oligarchs hide wealth in shell companies, tax havens, and crypto. How can the Charter seize assets it cannot locate?</strong><br>
+                    A: The Charter operates at the macroeconomic state level. While individuals can hide fractions of private wealth, a modern state cannot fund an offensive war or maintain state industrial grids via hidden crypto wallets. States rely on sovereign wealth funds, state-owned energy exports, and international central bank reserves. Because the 51% majority block inherently controls the dominant share of global banking clearinghouses, state-level assets are instantly visible and lockable.</p>
+                    <p><strong>Q: If the Secondary Contagion Tariff forces neutral countries to comply, won't that spark a global trade war?</strong><br>
+                    A: The Contagion Tariff functions as an economic deterrent; its mathematical certainty minimizes the need for application. A neutral nation faces clear economic math: Maintain trade with one isolated aggressor, or maintain trade with the 51% block controlling the majority of global consumer markets? The economic weight of the 51% block compels compliance prior to escalation.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Sovereignty & Neo-Colonialism</summary>
+                <div class="details-content">
+                    <p><strong>Q: Why would a developing nation allow an "Independent Conglomerate" to operate on its soil? Isn't this neo-colonialism?</strong><br>
+                    A: Traditional neo-colonialism relies on debt traps, high-interest loans, and political leverage. The Charter operates under an Anti-Debt Guarantee. The Conglomerate brings fully funded, union-built infrastructure without requiring loan repayments or political favors. Furthermore, the 75% local labor mandate ensures wealth is injected directly into the local working class rather than extracted by foreign multi-nationals.</p>
+                    <p><strong>Q: Doesn't the "Zero-State Routing Protocol" violate national sovereignty by bypassing elected governments?</strong><br>
+                    A: No. Nations consent to the protocol by ratifying the Charter. Host governments maintain full sovereignty over their domestic laws, policing, and internal affairs. The Charter simply establishes that for free, fully funded infrastructure and disaster relief, capital flows directly to contractors and workers performing the physical labor, rather than state treasuries.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Operations & Heavy Industry</summary>
+                <div class="details-content">
+                    <p><strong>Q: The Three-Bid System and Union mandates involve procedural steps. In a sudden disaster, won't this cause dangerous delays?</strong><br>
+                    A: The Charter explicitly separates acute emergency containment from long-term reconstruction. Phase 1 uses the Vanguard Retainer System—pre-vetted emergency union crews deployed immediately to stop active damage. Phase 2 (Long-Term Remediation) defaults to the Three-Bid Middle Selection process to guarantee proper cost-engineering and structural safety.</p>
+                    <p><strong>Q: If local workers in a war-torn region lack specialized technical skills, how can the 75% local labor mandate be met?</strong><br>
+                    A: This is managed via the Hybrid Mentorship Model. The remaining 25% of the workforce consists of specialized international union journey-level workers and engineers who manage technical execution and run the job site as an active apprenticeship program. Upon project completion, the host nation receives both fully repaired infrastructure and a highly skilled workforce.</p>
+                </div>
+            </details>
+        </section>
+    </main>
+
+    <footer>
+        <p><strong>WORLD TREATY OF EARTH</strong></p>
+        <p>The Global Citizens' Charter | A Blueprint for Restitution and Peace</p>
+    </footer>
+
+</body>
+</html>
