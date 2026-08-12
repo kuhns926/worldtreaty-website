@@ -413,18 +413,35 @@
     <footer>
         <p><strong>WORLD TREATY OF EARTH</strong></p>
         <p>The Global Citizens' Charter | A Blueprint for Restitution and Peace</p>
-    
-    <!-- Simple text link -->
-<a href="mailto:policy@worldtreaty.earth?subject=World Treaty Inquiry">
-  Email us: policy@worldtreaty.earth
-</a>
 
-<!-- Or, if you want it to look like a button (you can adjust the colors) -->
-<a href="mailto:policy@worldtreaty.earth?subject=World Treaty Inquiry" style="display: inline-block; padding: 10px 20px; background-color: #0056b3; color: #ffffff; text-decoration: none; border-radius: 5px; font-family: sans-serif; font-weight: bold;">
-  Get Involved
-</a>
-    
+<!-- The visible text the user sees -->
+<p style="font-family: sans-serif; font-size: 14px; color: #555;">
+  Prefer direct email? 
+  <a href="#" id="obfuscated-email" style="color: #0056b3; text-decoration: none; font-weight: bold;">
+    Click here to reveal address
+  </a>
+</p>
+
+<!-- The script that builds the real link when the page loads -->
+<script>
+  // We split the email into two parts so bots can't read the whole string
+  var user = "policy";
+  var domain = "worldtreaty.earth";
+  
+  // Find the link we created above
+  var contactLink = document.getElementById("obfuscated-email");
+  
+  // Glue the pieces together and turn it into a real mailto link
+  contactLink.href = "mailto:" + user + "@" + domain;
+  
+  // Change the text from "Click here to reveal address" to the actual email
+  contactLink.innerHTML = user + "@" + domain;
+</script>
+
+
     </footer>
 
 </body>
 </html>
+
+
