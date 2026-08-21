@@ -1,2 +1,2 @@
 # worldtreaty-website
-World Treaty of Earth
+World Treaty
