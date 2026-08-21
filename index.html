@@ -34,7 +34,8 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            padding: 1rem 2rem;
+            /* Reduced padding so the larger logo fits snugly */
+            padding: 0.5rem 2rem; 
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
@@ -190,9 +191,9 @@
 
     <nav>
         <div class="nav-container">
-            <!-- Top left logo replaced here -->
+            <!-- Increased logo height to 75px for better legibility -->
             <a href="#" class="nav-logo">
-                <img src="worldtreatylogo1.jpg" alt="World Treaty Logo" style="height: 40px; width: auto; border-radius: 4px;">
+                <img src="worldtreatylogo1.jpg" alt="World Treaty Logo" style="height: 75px; width: auto; border-radius: 4px; display: block;">
             </a>
             <div class="nav-links">
                 <a href="#reality">Context</a>
@@ -404,47 +405,37 @@
                 <summary>Operations & Heavy Industry</summary>
                 <div class="details-content">
                     <p><strong>Q: The Three-Bid System and Union mandates involve procedural steps. In a sudden disaster, won't this cause dangerous delays?</strong><br>
-                    A: The Charter explicitly separates acute emergency containment from long-term reconstruction. Phase 1 uses the Vanguard Retainer System—pre-vetted emergency union crews deployed immediately to stop active damage. Phase 2 (Long-Term Remediation) defaults to the Three-Bid Middle Selection process to guarantee proper cost-engineering and structural safety.</p>
+                    A: The Charter explicitly separates acute emergency containment from long-term reconstruction. Phase 1 uses the First-Response Retainer System—pre-vetted emergency union crews deployed immediately to stop active damage. Phase 2 (Long-Term Remediation) defaults to the Three-Bid Middle Selection process to guarantee proper cost-engineering and structural safety.</p>
                     <p><strong>Q: If local workers in a war-torn region lack specialized technical skills, how can the 75% local labor mandate be met?</strong><br>
                     A: This is managed via the Hybrid Mentorship Model. The remaining 25% of the workforce consists of specialized international union journey-level workers and engineers who manage technical execution and run the job site as an active apprenticeship program. Upon project completion, the host nation receives both fully repaired infrastructure and a highly skilled workforce.</p>
                 </div>
             </details>
         </section>
 
-        <!-- CONTACT SECTION REBUILT -->
-        <section id="contact" style="text-align: center;">
-            <h2>Get Involved</h2>
-            <p>Connect with us to learn more, support the initiative, or ask questions.</p>
-            
-            <div style="margin-top: 2rem;">
-                <p style="font-size: 1.25rem; margin-bottom: 1rem;">
-                    <strong>Instagram:</strong> 
-                    <a href="https://instagram.com/worldtreaty" target="_blank" rel="noopener noreferrer" style="color: var(--steel-blue); text-decoration: none; font-weight: bold;">
-                        @worldtreaty
-                    </a>
-                </p>
-                <p style="font-size: 1.25rem;">
-                    <strong>Email:</strong> 
-                    <a href="mailto:policy@worldtreaty.earth" style="color: var(--steel-blue); text-decoration: none; font-weight: bold;">
-                        policy@worldtreaty.earth
-                    </a>
-                </p>
-            </div>
-        </section>
-
     </main>
 
-    <footer>
+    <!-- Moving the Contact ID here so the top navigation link scrolls beautifully to the bottom -->
+    <footer id="contact">
         <p><strong>WORLD TREATY</strong></p>
         <p>The Global Citizens' Charter | A Blueprint for Restitution and Peace</p>
 
         <!-- The visible text the user sees -->
-        <p style="font-family: sans-serif; font-size: 14px; color: #cbd5e1; margin-top: 20px;">
-          Prefer direct email? 
-          <a href="#" id="obfuscated-email" style="color: #60a5fa; text-decoration: none; font-weight: bold;">
-            Click here to reveal address
-          </a>
-        </p>
+        <div style="font-family: sans-serif; font-size: 14px; color: #cbd5e1; margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+            <div>
+                Contact us: 
+                <a href="#" id="obfuscated-email" style="color: #60a5fa; text-decoration: none; font-weight: bold;">
+                    Click here to reveal address
+                </a>
+            </div>
+            
+            <div style="color: #64748b;">|</div>
+            
+            <div>
+                <a href="https://instagram.com/worldtreaty" target="_blank" rel="noopener noreferrer" style="color: #60a5fa; text-decoration: none; font-weight: bold;">
+                    Instagram: @worldtreaty
+                </a>
+            </div>
+        </div>
 
         <!-- The script that builds the real link when the page loads -->
         <script>
@@ -465,4 +456,3 @@
 
 </body>
 </html>
-
