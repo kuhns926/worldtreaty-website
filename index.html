@@ -34,7 +34,6 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            /* Reduced padding so the larger logo fits snugly */
             padding: 0.5rem 2rem; 
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
@@ -206,19 +205,31 @@
         </div>
     </nav>
 
-   <header>
- <h1>World Treaty</h1> <h2 style="font-size: 2.5rem; margin-bottom: 0.25rem; color: white; letter-spacing: -0.5px;">War comes from the top.</h2> <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--steel-blue); letter-spacing: -0.5px;">Peace comes from the bottom.</h2> <p style="font-size: 1.25rem; max-width: 800px; margin: 0 auto; color: var(--slate-100); font-weight: 400;">Make the war machines pay to build back these nations. Make war too costly to wage.</p>
- 
-</header> 
+    <header>
+        <h1>World Treaty</h1> 
+        <h2 style="font-size: 2.5rem; margin-bottom: 0.25rem; color: white; letter-spacing: -0.5px;">War comes from the top.</h2> 
+        <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--steel-blue); letter-spacing: -0.5px;">Peace comes from the bottom.</h2> 
+        <p style="font-size: 1.25rem; max-width: 800px; margin: 0 auto; color: var(--slate-100); font-weight: 400;">Make the war machines pay to build back these nations. Make war too costly to wage.</p>
+    </header>  
 
     <main>
-        <!-- REALITY OF MODERN GOVERNANCE SECTION -->
-        <section id="reality">
-            <h2>The Reality of Modern Governance</h2>
-            <p>The international frameworks established in the 20th century were built with noble intentions: to prevent global conflict, protect human rights, and foster international cooperation. Millions of dedicated individuals work within these legacy systems every day.</p>
-            <p>However, good intentions alone cannot overcome structural obsolescence. The persistence of modern conflicts, compounding environmental crises, and economic volatility demonstrate that existing global institutions lack the architecture required to meet today's scale of challenge. The issue is not a lack of goodwill, but a failure of design—frameworks built for a post-WWII world are simply unequipped for the interconnected realities of the 21st century.</p>
-            <p>The World Treaty is designed to bridge that gap: not by tearing down the foundational desire for global unity, but by providing the modern, accountable mechanics required to actually achieve it.</p>
-        </section>
+        <!-- REALITY OF MODERN GOVERNANCE SECTION (Replaced with The Hook) -->
+        <section id="reality"> 
+            <h2>A New Path Forward</h2> 
+            <p>The world is not at peace, and the current systems are clearly failing us. Earth needs new representation. For too long, humanity has kept a sledgehammer ready to crush an ant colony—holding the power of total destruction while hoping we never have to use it.</p> 
+            <p>Ultimately, the tool is used for the wrong purpose. We need the right tool for the right job. We are proposing a planet that disincentivizes war and promotes peace through true strength.</p> 
+            <p>Peace through binding diplomacy is the only way forward. No more ruin. No more turmoil. Why is this not already in effect? We as a human species need a new path that leads to prosperity. Save the planet and its people. Join the cause. It can be done. Unity is the only way to save humanity.</p> 
+            
+            <!-- The Pledge Button -->
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="mailto:policy@worldtreaty.earth?subject=I Support The World Treaty&body=I pledge my support for the ALRA framework." 
+                   style="background-color: var(--steel-blue); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 1.25rem; display: inline-block; transition: background-color 0.2s;"
+                   onmouseover="this.style.backgroundColor='#2563eb'" 
+                   onmouseout="this.style.backgroundColor='var(--steel-blue)'">
+                    Take the Pledge
+                </a>
+            </div>
+        </section> 
 
         <!-- PREAMBLE SECTION -->
         <section id="preamble">
@@ -232,7 +243,7 @@
         <section id="pillars">
             <h2>Executive Summary</h2>
             <div class="highlight-box">
-                <strong>Core Objective:</strong> To establish a bottom-up, grassroots global framework that permanently links human rights, economic stability, and environmental protection, bypassing traditional geopolitical gridlock and replacing military conflict with automated economic leverage.
+                <strong>Core Objective:</strong> The Aggressor Liability and Restitution Act (ALRA) establishes a binding international framework designed to structurally and financially disincentivize armed conflict. By replacing obsolete mechanisms of military deterrence with mandatory diplomacy and enforced restitution, the ALRA provides a pragmatic, enforceable path to global stability and equitable representation.
             </div>
 
             <h3>Pillar I: The Democratic Structure (The 51% Double-Majority)</h3>
@@ -414,12 +425,11 @@
 
     </main>
 
-    <!-- Moving the Contact ID here so the top navigation link scrolls beautifully to the bottom -->
+    <!-- Footer with Contact and Facebook Links -->
     <footer id="contact">
         <p><strong>WORLD TREATY</strong></p>
         <p>The Global Citizens' Charter | A Blueprint for Restitution and Peace</p>
 
-        <!-- The visible text the user sees -->
         <div style="font-family: sans-serif; font-size: 14px; color: #cbd5e1; margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
             <div>
                 Contact us: 
@@ -439,27 +449,18 @@
                     Facebook
                 </a>
             </div>
-
         </div>
 
         <!-- The script that builds the real link when the page loads -->
         <script>
-          // We split the email into two parts so bots can't read the whole string
           var user = "policy";
           var domain = "worldtreaty.earth";
           
-          // Find the link we created above
           var contactLink = document.getElementById("obfuscated-email");
-          
-          // Glue the pieces together and turn it into a real mailto link
           contactLink.href = "mailto:" + user + "@" + domain;
-          
-          // Change the text from "Click here to reveal address" to the actual email
           contactLink.innerHTML = user + "@" + domain;
         </script>
     </footer>
 
 </body>
 </html>
-
-
