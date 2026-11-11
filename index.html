@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>World Treaty for Earth | The Global Citizens' Charter</title>
+    <title>World Treaty for Earth | The Constitution for Earth</title>
     <style>
         /* CSS Variables for the "Glass Ledger" Theme */
         :root {
@@ -78,7 +78,7 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 2rem;
+            gap: 1.75rem;
         }
 
         .nav-links a {
@@ -212,7 +212,7 @@
             max-width: 1000px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 1rem;
             text-align: center;
         }
@@ -222,7 +222,7 @@
         }
 
         .stat-num {
-            font-size: 1.5rem;
+            font-size: 1.35rem;
             font-weight: 800;
             color: #60a5fa;
             display: block;
@@ -230,7 +230,7 @@
         }
 
         .stat-desc {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #cbd5e1;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -300,15 +300,15 @@
             margin-bottom: 0;
         }
 
-        /* 3 Pillars Interactive Cards Grid */
-        .pillars-grid {
+        /* Interactive Cards Grid for Article I (Five Guarantees) & Article II */
+        .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
             gap: 1.5rem;
-            margin-top: 2rem;
+            margin-top: 1.75rem;
         }
 
-        .pillar-card {
+        .feature-card {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
             border-top: 4px solid var(--steel-blue);
@@ -317,35 +317,35 @@
             transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
         }
 
-        .pillar-card:hover {
-            transform: translateY(-6px);
+        .feature-card:hover {
+            transform: translateY(-5px);
             box-shadow: 0 12px 20px -5px rgba(15, 23, 42, 0.1);
             border-color: var(--steel-blue);
             background: white;
         }
 
-        .pillar-icon {
-            width: 48px;
-            height: 48px;
-            background: rgba(59, 130, 246, 0.12);
+        .card-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             color: var(--steel-blue);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-            margin-bottom: 1rem;
+            background: rgba(59, 130, 246, 0.12);
+            padding: 0.25rem 0.65rem;
+            border-radius: 4px;
+            margin-bottom: 0.75rem;
         }
 
-        .pillar-card h3 {
+        .feature-card h3 {
             margin-top: 0;
             font-size: 1.2rem;
             color: var(--slate-900);
         }
 
-        .pillar-card ul {
-            margin-left: 1.2rem;
-            margin-bottom: 0;
+        .feature-card p {
             font-size: 0.95rem;
+            margin-bottom: 0;
         }
 
         /* Call To Action Button */
@@ -376,7 +376,7 @@
             box-shadow: 0 10px 20px -3px rgba(59, 130, 246, 0.6);
         }
 
-        /* Interactive Accordions for CLRT and FAQ */
+        /* Interactive Accordions for Constitution Articles & FAQ */
         details {
             background-color: var(--slate-100);
             margin-bottom: 0.85rem;
@@ -502,9 +502,13 @@
             color: #475569;
         }
 
+        @media (max-width: 768px) {
+            .stat-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
         @media (max-width: 640px) {
-            .nav-links { gap: 1rem; }
-            .nav-links a { font-size: 0.8rem; }
+            .nav-links { gap: 0.9rem; }
+            .nav-links a { font-size: 0.78rem; }
             .hero-logo { height: 120px; }
             header h1 { font-size: 2.25rem; }
             .hero-mission { font-size: 1.65rem; }
@@ -525,23 +529,24 @@
     <nav>
         <div class="nav-container">
             <div class="nav-links">
-                <a href="#reality">Mission</a>
+                <a href="#mission">Mission</a>
                 <a href="#preamble">Preamble</a>
-                <a href="#pillars">Pillars</a>
-                <a href="#clrt">CLRT</a>
+                <a href="#article-1">Article I: Rights</a>
+                <a href="#article-2">Article II: Governance</a>
+                <a href="#article-3">Article III: Treasury</a>
+                <a href="#article-4">Article IV: Peace Law</a>
                 <a href="#faq">FAQ</a>
-                <a href="#contact">Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Header with Blueprint Grid & Glowing Logo (UPDATED TO wte-logo-3.jpg) -->
+    <!-- Hero Header with Blueprint Grid & Glowing Logo -->
     <header>
         <a href="#" class="hero-logo-link">
             <img src="wte-logo-3.jpg" alt="World Treaty for Earth Logo" class="hero-logo">
         </a>
-        <h1>World Treaty for Earth</h1>
-        <div class="hero-label">Our Mission</div>
+        <h1>The Constitution for Earth</h1>
+        <div class="hero-label">World Treaty for Earth</div>
         <div class="hero-mission">Making War Too Costly to Wage</div>
         <p class="hero-sub">Building Infrastructure &amp; Peace, <strong>Point Blank.</strong></p>
     </header>
@@ -549,6 +554,10 @@
     <!-- Quick Visual Key Metrics Banner -->
     <div class="stat-banner">
         <div class="stat-grid">
+            <div class="stat-item">
+                <span class="stat-num">5 Guarantees</span>
+                <span class="stat-desc">Universal Material Floor</span>
+            </div>
             <div class="stat-item">
                 <span class="stat-num">51% Dual-Lock</span>
                 <span class="stat-desc">States + Global Population</span>
@@ -566,7 +575,7 @@
 
     <main>
         <!-- MISSION & CONTEXT SECTION -->
-        <section id="reality"> 
+        <section id="mission"> 
             <h2>
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="10"></circle>
@@ -598,14 +607,14 @@
                     <line x1="16" y1="17" x2="8" y2="17"></line>
                     <polyline points="10 9 9 9 8 9"></polyline>
                 </svg>
-                Preamble
+                Preamble to the Constitution
             </h2>
             <p>For generations, the devastating costs of war and ecological ruin have been outsourced to the working class, while the architects of that destruction hide behind diplomatic immunity, state treasuries, and geopolitical vetoes. The world can no longer afford an international system where peace is treated as a political favor and accountability is lost in the machinery of corrupt governments. We stand at a necessary turning point in human history, rejecting the fragile, easily broken treaties of the past in favor of a new, undeniable gravity: an automated system of economic consequence where aggression guarantees financial ruin, and the power to govern the global commons is permanently secured by the majority of humanity.</p>
             
-            <p>The World Treaty charter is a declaration of systemic reform, built not on empty diplomacy, but on the grounded reality of heavy industry, honest labor, and absolute liability. By seizing the hidden wealth of those who ignite conflict and routing it entirely outside of state bureaucracies, we channel restitution directly into the hands of the unionized workers and aid organizations who physically repair the damage and care for the populace. This is our blueprint for a world where peace is mathematically enforced, where sovereign boundaries are respected without sacrificing the environment, and where the future is rebuilt—steel by steel, and foundation by foundation—by making those accountable who cause the destruction of our planet in the first place.</p>
+            <p>This Constitution for Earth is a declaration of systemic reform, built not on empty diplomacy, but on the grounded reality of heavy industry, honest labor, and absolute liability. By seizing the hidden wealth of those who ignite conflict and routing planetary resources entirely outside of state bureaucracies, we channel capital directly into the hands of the unionized workers, educators, medical practitioners, and aid organizations who physically repair the damage and care for the populace. This is our blueprint for a world where peace is mathematically enforced, where local sovereignty is respected without sacrificing the environment, and where the future is built—steel by steel, and foundation by foundation.</p>
 
             <div class="cta-container">
-                <a href="mailto:policy@worldtreaty.earth?subject=I Support The World Treaty&body=I pledge my support for the CLRT framework." class="pledge-btn">
+                <a href="mailto:policy@worldtreaty.earth?subject=I Ratify The Constitution for Earth&body=I pledge my support for the World Treaty for Earth and the Constitution for Earth." class="pledge-btn">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                         <polyline points="22 4 12 14.01 9 11.01"></polyline>
@@ -615,171 +624,198 @@
             </div>
         </section>
 
-        <!-- THE THREE PILLARS SECTION (Visual Card Grid) -->
-        <section id="pillars">
+        <!-- ARTICLE I: THE UNIVERSAL MATERIAL FLOOR -->
+        <section id="article-1">
             <h2>
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                    <polyline points="2 17 12 22 22 17"></polyline>
-                    <polyline points="2 12 12 17 22 12"></polyline>
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
                 </svg>
-                The Three Pillars
+                Article I: The Universal Material Floor
             </h2>
-            <p>Rather than relying on empty promises, the Charter operates on three interlocking mechanical safeguards:</p>
+            <p>A constitution cannot run on abstract promises while citizens starve or freeze. Every person on Earth is guaranteed five foundational material rights, enforced through closed-loop municipal engineering, honest labor standards, and direct-to-service funding:</p>
 
-            <div class="pillars-grid">
-                <!-- Pillar 1 Card -->
-                <div class="pillar-card">
-                    <div class="pillar-icon">
-                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="2" y1="12" x2="22" y2="12"></line>
-                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                        </svg>
-                    </div>
-                    <h3>Pillar I: The 51% Double-Majority</h3>
-                    <p>A dual-lock voting mechanism that prevents gridlock while guaranteeing fairness:</p>
-                    <ul>
-                        <li><strong>The Tipping Point:</strong> Measures become binding law when 51% of participating nations vote in favor.</li>
-                        <li><strong>Population Safeguard:</strong> Passing votes must also represent at least 51% of the total human population on Earth.</li>
-                    </ul>
+            <div class="cards-grid">
+                <div class="feature-card">
+                    <span class="card-badge">Section 1</span>
+                    <h3>No More Hunger &amp; Clean Water</h3>
+                    <p>Nutritious daily food and clean water are an absolute birthright. Every municipality maintains local agricultural reserves and universal school-meal programs so every child has a full belly. Commodity speculation on staple food and water is outlawed.</p>
                 </div>
 
-                <!-- Pillar 2 Card -->
-                <div class="pillar-card">
-                    <div class="pillar-icon">
-                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                        </svg>
-                    </div>
-                    <h3>Pillar II: Automated Enforcement</h3>
-                    <p>Pre-programmed economic consequences that stop aggressors without firing a shot:</p>
-                    <ul>
-                        <li><strong>Targeted Asset Seizure:</strong> Mandatory freezing of foreign reserves of violating states.</li>
-                        <li><strong>Oligarch-First Extraction:</strong> Targets offshore wealth and luxury estates of leaders, shielding working citizens.</li>
-                        <li><strong>The Eco-Tariff:</strong> Mandatory global export tariffs until restitution is paid.</li>
-                    </ul>
+                <div class="feature-card">
+                    <span class="card-badge">Section 2</span>
+                    <h3>Quality Education &amp; Trade Mastery</h3>
+                    <p>Free, world-class public education from early childhood through university degrees and union trade apprenticeships—balancing sciences and civic literacy with hands-on mechanical, agricultural, and industrial trades, free of student debt traps.</p>
                 </div>
 
-                <!-- Pillar 3 Card -->
-                <div class="pillar-card">
-                    <div class="pillar-icon">
-                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
-                        </svg>
-                    </div>
-                    <h3>Pillar III: Restitution &amp; Rebuilding</h3>
-                    <p>Making offensive war economically ruinous while physically rebuilding communities:</p>
-                    <ul>
-                        <li><strong>Absolute Liability:</strong> Aggressors pay for every bridge, pipe, power plant, and home destroyed.</li>
-                        <li><strong>The Human Cost Ledger:</strong> Direct daily stipends for refugee care and healthcare trusts.</li>
-                        <li><strong>The Peace Escrow:</strong> Seized funds held in escrow until demilitarization is verified.</li>
-                    </ul>
+                <div class="feature-card">
+                    <span class="card-badge">Section 3</span>
+                    <h3>Affordable Housing &amp; Utilities</h3>
+                    <p>Every person is guaranteed a safe roof over their head and uninterrupted water, sanitation, heating/cooling, and electricity at a capped fraction of income, utilizing modular construction and non-profit closed-loop utility microgrids.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="card-badge">Section 4</span>
+                    <h3>Good-Paying Union Jobs</h3>
+                    <p>All infrastructure and rebuilding projects operate under prevailing union wages and the <strong>Hybrid Mentorship Model</strong>: 75% local workers hired from the community paired with 25% international journey-level tradespeople running active apprenticeships.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="card-badge">Section 5</span>
+                    <h3>Healthcare as a Human Right</h3>
+                    <p>Full medical, dental, mental health, and preventative care provided free at the point of service. Funded directly to hospitals and clinics without middleman insurance monopolies, with publicly funded medicines placed under open licensing.</p>
                 </div>
             </div>
         </section>
 
-        <!-- CLRT SECTION (ACCORDION TABS) -->
-        <section id="clrt">
+        <!-- ARTICLE II: PLANETARY GOVERNANCE & CHECKS ON POWER -->
+        <section id="article-2">
+            <h2>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+                Article II: Planetary Governance &amp; Checks on Power
+            </h2>
+            <p>Centralized empires collapse into tyranny, while fractured states fall into gridlock and war. Article II establishes how humanity polices and governs itself as one world while strictly protecting local self-rule:</p>
+
+            <details>
+                <summary>Section 1: Strict Subsidiarity (Local Self-Rule)</summary>
+                <div class="details-content">
+                    <p><strong>The Boundary:</strong> Planetary governance is strictly limited to cross-border issues that no single town or nation can solve alone: stopping offensive wars, maintaining the Article I Material Floor, enforcing global trade fairness, and protecting the shared biosphere.</p>
+                    <p><strong>Local Sovereignty:</strong> Every town, region, and nation retains absolute authority over its own local laws, cultural traditions, policing, and municipal operations—provided they do not violate Article I human rights or export harm across borders.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Section 2: The 51% Double-Majority (Dual-Lock Democracy)</summary>
+                <div class="details-content">
+                    <p><strong>The Tipping Point:</strong> Global initiatives, emergency responses, or war-liability penalties become binding law only when <strong>51% of participating sovereign nations</strong> vote in favor.</p>
+                    <p><strong>The Population Safeguard:</strong> To prevent a coalition of microstates from overriding the global consensus, passing votes require an absolute demographic mandate: the specific nations voting in favor must also possess a combined population of at least <strong>51% of the total human population on Earth</strong>. Unilateral superpower vetoes are abolished.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Section 3: The Paired Compromise Legislative Rule</summary>
+                <div class="details-content">
+                    <p><strong>Ending Gridlock:</strong> Whenever the Planetary Assembly faces a divided policy dispute, legislation advances through a <strong>Paired Compromise Calendar</strong>. Competing factions must pair one priority measure from each side into a single, balanced, non-severable package with equal floor time and mandatory up-or-down voting—forcing practical problem-solving over partisan sabotage.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Section 4: The Council of Labor &amp; Engineering</summary>
+                <div class="details-content">
+                    <p><strong>Builders Over Bureaucrats:</strong> Politicians and lawyers cannot be the sole authors of laws governing physical reality. All planetary infrastructure, utility, labor, and environmental standards must be co-ratified by a non-partisan <strong>Council of Labor &amp; Engineering</strong>—composed of elected journey-level tradespeople, engineers, agriculturalists, and medical practitioners.</p>
+                </div>
+            </details>
+        </section>
+
+        <!-- ARTICLE III: THE GLASS LEDGER & ZERO-STATE TREASURY -->
+        <section id="article-3">
+            <h2>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+                Article III: The Glass Ledger &amp; Zero-State Treasury
+            </h2>
+            <p>To prevent corruption, debt traps, and bureaucratic theft, all planetary peacetime commons and wartime restitution funds are governed by open-source transparency and direct-to-worker routing:</p>
+
+            <details>
+                <summary>Section 1: The Open-Source Glass Ledger (Absolute Transparency)</summary>
+                <div class="details-content">
+                    <p><strong>Real-Time Tracking:</strong> Every single financial transaction—whether peacetime infrastructure funding or seized wartime restitution—is tracked on an open-source, publicly viewable digital ledger.</p>
+                    <p><strong>Public Accountability:</strong> Any citizen worldwide can inspect a project and verify which contractor received a contract, the exact line-item material costs, and the precise hourly wages paid to the workforce on site.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Section 2: The Zero-State Routing Protocol (0% to Politicians)</summary>
+                <div class="details-content">
+                    <p><strong>The Firewall:</strong> Under no circumstances will any planetary commons funds, penalty money, or refugee fees be deposited into the treasury, central bank, or controlled accounts of any national or local government.</p>
+                    <p><strong>Direct-to-Service Endpoints:</strong> All funds are paid directly to operational providers:</p>
+                    <ul>
+                        <li><strong>For Construction &amp; Utilities:</strong> Directly to approved Union Contractors and local public utility boards on an itemized contract basis.</li>
+                        <li><strong>For Refugees &amp; Relief:</strong> Directly to verified aid organizations, food distribution hubs, and camp operators managing the crisis.</li>
+                        <li><strong>For Healthcare &amp; Schools:</strong> Directly to hospitals, clinics, medical trusts, and public trade and school districts.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details>
+                <summary>Section 3: The Three-Bid Middle Selection Rule</summary>
+                <div class="details-content">
+                    <p><strong>Honest Pricing:</strong> Every major construction and rebuilding contract requires a minimum of three competitive bids from qualified union contractors, with the system automatically selecting the <strong>middle bid</strong>. This prevents contractor corner-cutting (lowest bid) and price-gouging (highest bid).</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Section 4: The Anti-Debt Guarantee &amp; Peacetime Commons Dividend</summary>
+                <div class="details-content">
+                    <p><strong>Grants, Never Loans:</strong> All rebuilding and infrastructure deployments are upfront grants, never loans. Host nations and victim communities never owe a single penny, abolishing foreign debt-trap diplomacy.</p>
+                    <p><strong>Peacetime Funding &amp; Monetary Integrity:</strong> Central banks are prohibited from devaluing working wages via unbacked money-printing for war or bailouts. Peacetime baseline funding is drawn from a modest uniform levy on shared global commons—international financial clearinghouses, trans-oceanic shipping lanes, orbital spectrums, and raw multinational resource extraction.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Section 5: The 100-Year Generational Maintenance Covenant</summary>
+                <div class="details-content">
+                    <p><strong>The 5% Endowment:</strong> Infrastructure is a permanent physical requirement. A mandatory 5% of all seized aggressor assets bypasses immediate construction costs and is placed into an irrevocable, localized <strong>Maintenance Endowment</strong>.</p>
+                    <p><strong>The 100-Year Guarantee:</strong> This trust is dedicated exclusively to funding ongoing operational training, local union apprenticeships, and physical maintenance of newly repaired utility grids, water systems, and habitats for a full century.</p>
+                </div>
+            </details>
+        </section>
+
+        <!-- ARTICLE IV: CONFLICT LIABILITY & PEACE ENFORCEMENT (CLRT ABSORBED) -->
+        <section id="article-4">
             <h2>
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                 </svg>
-                The Conflict Liability &amp; Restitution Treaty (CLRT)
+                Article IV: Conflict Liability &amp; Peace Enforcement
             </h2>
-            <p><strong>Purpose:</strong> This law guarantees that any government that starts a war will pay for the damage they cause. It ensures that the leaders who start the war lose their wealth, while protecting everyday working citizens. Click any article below to inspect the mechanism:</p>
+            <p>Only a handful of people start and end wars, and they don't stop unless their own pocketbooks are at stake personally. Incorporating the full doctrine of the <strong>Conflict Liability &amp; Restitution Treaty (CLRT)</strong>, Article IV attaches automatic economic consequences to every missile fired—making peace the only affordable choice:</p>
             
             <details>
-                <summary>Article 1: You Break It, You Buy It (Total Liability)</summary>
+                <summary>Section 1: You Break It, You Buy It (Total Liability &amp; Human Cost)</summary>
                 <div class="details-content">
-                    <p><strong>The Rule:</strong> When the 51% Double-Majority votes that a country has started an offensive war, that attacking country is officially in debt for all the damage.</p>
-                    <p><strong>No Exceptions:</strong> It does not matter who wins the battles. The attacker must pay to fix every destroyed building, bridge, water pipe, power station, and natural habitat.</p>
+                    <p><strong>Absolute Liability:</strong> When the 51% Double-Majority votes that a country has started an offensive war or caused catastrophic cross-border ecological ruin, that attacking country is officially in debt for 100% of the damage. Regardless of battlefield outcomes, the attacker must pay to fix every destroyed building, bridge, water pipe, power station, and natural habitat.</p>
+                    <p><strong>The Human Cost Ledger:</strong> The attacking country is billed a mandatory daily fee for every displaced refugee, routed directly to neighboring humanitarian networks, alongside full funding for long-term medical and rehabilitation trusts for injured civilians and veterans on both sides.</p>
                 </div>
             </details>
 
             <details>
-                <summary>Article 2: Targeting the Architects (Where the Money Comes From)</summary>
+                <summary>Section 2: Targeting the Architects Only (Working-Class &amp; Military Shield)</summary>
                 <div class="details-content">
-                    <p><strong>The Architects Only:</strong> Money will never be extracted from everyday working people or career military personnel. To pay the debt, the global system strictly targets the top of the food chain—the Sovereign Architects. This includes freezing the foreign bank accounts, luxury estates, and corporate assets of the top-level political leaders, state-aligned oligarchs, and billionaires who hold the ultimate authority or provide the financial backing for the war.</p>
-                    <p><strong>The Military Exemption:</strong> This Charter recognizes that militaries do not declare wars; politicians do. Therefore, career military personnel and battlefield commanders are strictly exempt from personal financial seizure.</p>
-                    <p><strong>The Civilian Shield:</strong> Money used for basic domestic needs—like civilian food imports, medicine, and local pensions—can never be touched.</p>
-                    <p><strong>The Macroeconomic Limit:</strong> The total penalty taken in one year will never exceed 10% of the attacking country's total yearly income (GDP). The system defunds the ruling class's war machine, not the local hospitals.</p>
+                    <p><strong>The Sovereign Architects:</strong> Money is never extracted from everyday working people. The system strictly targets the top of the food chain—freezing the foreign bank accounts, sovereign wealth funds, luxury estates, and corporate assets of the top-level political leaders, state-aligned oligarchs, and billionaires who authorize or finance the war.</p>
+                    <p><strong>The Military Exemption:</strong> This Constitution recognizes that militaries do not declare wars; politicians do. Career military personnel and battlefield commanders are strictly exempt from personal financial seizure.</p>
+                    <p><strong>The Civilian Shield &amp; 10% GDP Cap:</strong> Domestic funds for civilian food imports, medicine, and local pensions can never be touched, and total annual penalties will never exceed 10% of the attacking country's GDP—defunding the ruling class's war machine, never the local hospitals.</p>
                 </div>
             </details>
 
             <details>
-                <summary>Article 3: Paying for the People (The Human Cost)</summary>
+                <summary>Section 3: The Eco-Tariff &amp; Contagion Deterrent</summary>
                 <div class="details-content">
-                    <p><strong>The Refugee Fee:</strong> The attacking country must pay a daily fee for every person forced to flee their home to escape the war. This money goes directly to verified organizations in the neighboring regions feeding and housing those refugees.</p>
-                    <p><strong>Healthcare for All:</strong> The attacking country must fund long-term medical care and rehabilitation trusts for all injured civilians and veterans on both sides of the conflict.</p>
+                    <p><strong>Global Trade Lockout:</strong> Compliant nations are legally required to freeze violating state reserves immediately. Any non-compliant aggressor—or any neutral nation attempting to launder aggressor wealth or supply offensive munitions—faces an automatic, unified <strong>Eco-Tariff</strong> across the 51% majority bloc, pricing their exports out of the global economy overnight.</p>
                 </div>
             </details>
 
             <details>
-                <summary>Article 4: Fixing the Damage (Fair Rebuilding)</summary>
+                <summary>Section 4: The Peace Escrow &amp; Recidivism Penalty</summary>
                 <div class="details-content">
-                    <p><strong>No Corrupt Spending:</strong> Funds taken from attackers are managed by an independent, international, non-profit organization. Politicians are not allowed to touch or direct these funds.</p>
-                    <p><strong>Honest Pricing:</strong> Every rebuilding contract requires a minimum of three competitive bids, with the system automatically selecting the middle bid. This prevents contractor corner-cutting (lowest bid) and price-gouging (highest bid).</p>
-                    <p><strong>Union Labor Mandate:</strong> All rebuilding work must be awarded to union contractors to guarantee safe jobs and fair prevailing wages. Local workers from the damaged areas must be hired first to rebuild their own communities.</p>
-                </div>
-            </details>
-
-            <details>
-                <summary>Article 5: Keeping the Peace (The Escrow Account)</summary>
-                <div class="details-content">
-                    <p><strong>The Hold:</strong> When fighting stops, seized funds are not simply returned. They are held safely in a "Peace Escrow" account.</p>
-                    <p><strong>Earning It Back:</strong> If the attacking country stays peaceful and demilitarizes, escrowed funds are incrementally released back into their local civilian economy to build green, peacetime infrastructure.</p>
+                    <p><strong>The Hold:</strong> When fighting stops, seized funds are held safely in a blind "Peace Escrow" account rather than returned to politicians.</p>
+                    <p><strong>Earning It Back:</strong> As the attacking country stays peaceful and demilitarizes, escrowed funds are incrementally released back into their local civilian economy to build green, peacetime infrastructure.</p>
                     <p><strong>The Recidivism Penalty:</strong> If the attacking country breaks the peace and restarts hostilities, their total debt is instantly doubled, and all escrowed funds are permanently forfeited.</p>
                 </div>
             </details>
 
             <details>
-                <summary>Article 6: The Zero-State Routing Protocol (No Government Payouts)</summary>
+                <summary>Section 5: Unanchored Crisis Operations (Access &amp; Security)</summary>
                 <div class="details-content">
-                    <p><strong>The Firewall:</strong> Under no circumstances will any penalty funds, restitution money, or refugee fees be deposited into the treasury, central bank, or controlled accounts of any national or local government.</p>
-                    <p><strong>Direct-to-Service Endpoints:</strong> All funds are paid directly to operational providers:</p>
-                    <ul>
-                        <li><strong>For Rebuilding:</strong> Payments go strictly and directly to approved Union Contractors executing the three-bid contracts.</li>
-                        <li><strong>For Refugees:</strong> Payments go directly to verified aid organizations, humanitarian camp operators, and food distribution networks managing the crisis.</li>
-                        <li><strong>For Healthcare:</strong> Payments go directly to hospitals, clinics, and medical trusts providing direct care.</li>
-                    </ul>
-                    <p><strong>Municipal Services Exception:</strong> If local public infrastructure is overburdened by refugee surges, the system pays local public utility entities directly on a strict itemized-contract basis rather than issuing lump-sum political grants.</p>
-                </div>
-            </details>
-
-            <details>
-                <summary>Article 7: The Anti-Debt Guarantee (No Debt Traps)</summary>
-                <div class="details-content">
-                    <p><strong>The Rule:</strong> Rebuilding funds are grants, not loans. Host nations and victim nations will never owe a single penny to the Independent Conglomerate or any participating country.</p>
-                    <p><strong>Upfront Capital:</strong> Because funding is extracted entirely from the aggressor’s seized wealth, heavy commercial, hospital, and utility projects are fully paid upfront, preventing foreign financial leverage or debt-trap diplomacy.</p>
-                </div>
-            </details>
-
-            <details>
-                <summary>Article 8: Unanchored Operations (Access &amp; Security)</summary>
-                <div class="details-content">
-                    <p><strong>The Border Agreement:</strong> By ratifying the Charter, member nations agree to grant open operational access to the Independent Conglomerate’s union contractors and aid workers during an active crisis.</p>
-                    <p><strong>Unanchored Principle:</strong> The Conglomerate operates as an independent structure on local soil. It hires local workers and builds the foundation of the local economy, but its capital and management do not penetrate the local government's political machinery.</p>
-                    <p><strong>Perimeter Security:</strong> Host nation militaries are required to provide external perimeter security for construction sites and humanitarian installations.</p>
-                    <p><strong>Enforcement:</strong> If a host government attempts to seize equipment, harm personnel, or block border access, project execution pauses immediately, and the host government faces Eco-Tariffs until safety and access are restored.</p>
-                </div>
-            </details>
-
-            <details>
-                <summary>Article 9: The Glass Ledger (Absolute Transparency)</summary>
-                <div class="details-content">
-                    <p><strong>Real-Time Tracking:</strong> Every single financial transaction is tracked on an open-source, publicly viewable digital ledger.</p>
-                    <p><strong>Public Accountability:</strong> Any citizen worldwide can inspect a project and verify which contractor received a contract, the exact line-item costs, and the precise hourly wages paid to the workforce on site.</p>
-                </div>
-            </details>
-
-            <details>
-                <summary>Article 10: Generational Stewardship (The Maintenance Covenant)</summary>
-                <div class="details-content">
-                    <p><strong>The Rule:</strong> Infrastructure and ecological stability are not temporary political achievements; they are permanent physical requirements. Rebuilding a system is only the first phase of restitution. Therefore, the Charter mandates that the independent framework does not simply rebuild and abandon a recovering region.</p>
-                    <p><strong>The Endowment:</strong> A mandatory 5% of all seized aggressor assets will bypass immediate construction costs and be placed into an irrevocable, localized Maintenance Endowment. This ensures that the financial burden of long-term upkeep never falls upon the victim nation or its citizens.</p>
-                    <p><strong>The 100-Year Guarantee:</strong> This trust is dedicated exclusively to funding the ongoing operational training, local union apprenticeships, and physical maintenance of the newly repaired utility grids, water systems, and ecological habitats. It legally guarantees that the local working class retains both the financial capital and the heavy industrial competence to sustain their own infrastructure for a century to come.</p>
+                    <p><strong>Open Access:</strong> Member nations grant open operational border access to union rebuilding crews and aid workers during an active crisis. Rebuilding operations hire local workers and build the local economy, but remain strictly unanchored from the local government's political machinery.</p>
+                    <p><strong>Perimeter Security:</strong> Host nation militaries are required to provide external perimeter security for construction sites and humanitarian installations. If a host government attempts to seize equipment, harm personnel, or block access, project execution pauses immediately and Eco-Tariffs trigger until safety is restored.</p>
                 </div>
             </details>
         </section>
@@ -802,30 +838,30 @@
                     A: No. That is precisely why the Double-Majority exists. While India and China have large populations, they represent only two state votes. To pass any measure, they would still need to convince over 90 other sovereign nations to vote in favor to meet the 51% state threshold. The dual-lock system physically prevents both the "Tyranny of the Populous" and the "Tyranny of Microstates."</p>
                     
                     <p><strong>Q: What stops a coalition of 51% of nations from unfairly targeting and bankrupting a minority nation over political disagreements?</strong><br>
-                    A: The Charter is strictly triggered by objective physical violations—specifically, offensive military aggression and catastrophic ecological destruction. It is not an instrument for ideological, cultural, or trade disputes. Furthermore, the 10% Macroeconomic Floor ensures that even under maximum penalties, a nation’s civilian economy cannot be collapsed.</p>
+                    A: Article IV penalties are strictly triggered by objective physical violations—specifically, offensive military aggression and catastrophic ecological destruction. It is not an instrument for ideological, cultural, or trade disputes. Furthermore, the 10% Macroeconomic Floor ensures that even under maximum penalties, a nation’s civilian economy cannot be collapsed.</p>
 
-                    <p><strong>Q: Superpowers with UN vetoes are never going to voluntarily sign this. How does the Charter work if the biggest militaries refuse to participate?</strong><br>
-                    A: The CLRT does not ask for their permission; it leverages their economic reliance. Modern superpowers cannot survive without access to global consumer markets and international shipping lanes. If a 51% Double-Majority bloc ratifies the Charter, it creates an unavoidable economic gravity well. A non-signatory superpower that launches an offensive war will instantly face the Eco-Tariff and asset freezes across half the planet. They do not have to sign the treaty to be bound by the sheer mathematical consequence of losing access to the global economy.</p>
+                    <p><strong>Q: Superpowers with UN vetoes are never going to voluntarily sign this. How does the Constitution work if the biggest militaries refuse to participate?</strong><br>
+                    A: It does not ask for their permission; it leverages their economic reliance. Modern superpowers cannot survive without access to global consumer markets and international shipping lanes. If a 51% Double-Majority bloc ratifies the Constitution, it creates an unavoidable economic gravity well. A non-signatory superpower that launches an offensive war will instantly face the Eco-Tariff and asset freezes across half the planet. They do not have to sign to be bound by the mathematical consequence of losing access to the global economy.</p>
                 </div>
             </details>
 
             <details>
                 <summary>Economic Enforcement &amp; Hidden Wealth</summary>
                 <div class="details-content">
-                    <p><strong>Q: Oligarchs hide wealth in shell companies, tax havens, and crypto. How can the Charter seize assets it cannot locate?</strong><br>
-                    A: The Charter operates at the macroeconomic state level. While individuals can hide fractions of private wealth, a modern state cannot fund an offensive war or maintain state industrial grids via hidden crypto wallets. States rely on sovereign wealth funds, state-owned energy exports, and international central bank reserves. Because the 51% majority block inherently controls the dominant share of global banking clearinghouses, state-level assets are instantly visible and lockable.</p>
+                    <p><strong>Q: Oligarchs hide wealth in shell companies, tax havens, and crypto. How can the system seize assets it cannot locate?</strong><br>
+                    A: The system operates at the macroeconomic state level. While individuals can hide fractions of private wealth, a modern state cannot fund an offensive war or maintain state industrial grids via hidden crypto wallets. States rely on sovereign wealth funds, state-owned energy exports, and international central bank reserves. Because the 51% majority bloc inherently controls the dominant share of global banking clearinghouses, state-level assets are instantly visible and lockable.</p>
                     <p><strong>Q: If the Secondary Contagion Tariff forces neutral countries to comply, won't that spark a global trade war?</strong><br>
-                    A: The Contagion Tariff functions as an economic deterrent; its mathematical certainty minimizes the need for application. A neutral nation faces clear economic math: Maintain trade with one isolated aggressor, or maintain trade with the 51% block controlling the majority of global consumer markets? The economic weight of the 51% block compels compliance prior to escalation.</p>
+                    A: The Contagion Tariff functions as an economic deterrent; its mathematical certainty minimizes the need for application. A neutral nation faces clear economic math: Maintain trade with one isolated aggressor, or maintain trade with the 51% bloc controlling the majority of global consumer markets? The economic weight of the 51% bloc compels compliance prior to escalation.</p>
                 </div>
             </details>
 
             <details>
                 <summary>Sovereignty &amp; Neo-Colonialism</summary>
                 <div class="details-content">
-                    <p><strong>Q: Why would a developing nation allow an "Independent Conglomerate" to operate on its soil? Isn't this neo-colonialism?</strong><br>
-                    A: Traditional neo-colonialism relies on debt traps, high-interest loans, and political leverage. The Charter operates under an Anti-Debt Guarantee. The Conglomerate brings fully funded, union-built infrastructure without requiring loan repayments or political favors. Furthermore, the 75% local labor mandate ensures wealth is injected directly into the local working class rather than extracted by foreign multi-nationals.</p>
+                    <p><strong>Q: Why would a developing nation allow independent union crews to operate on its soil? Isn't this neo-colonialism?</strong><br>
+                    A: Traditional neo-colonialism relies on debt traps, high-interest loans, and political leverage. Article III operates under an Anti-Debt Guarantee: fully funded, union-built infrastructure without loan repayments or political favors. Furthermore, the 75% local labor mandate ensures wealth is injected directly into the local working class rather than extracted by foreign multinationals.</p>
                     <p><strong>Q: Doesn't the "Zero-State Routing Protocol" violate national sovereignty by bypassing elected governments?</strong><br>
-                    A: No. Nations consent to the protocol by ratifying the Charter. Host governments maintain full sovereignty over their domestic laws, policing, and internal affairs. The Charter simply establishes that for free, fully funded infrastructure and disaster relief, capital flows directly to contractors and workers performing the physical labor, rather than state treasuries.</p>
+                    A: No. Nations consent to the protocol upon ratification, and Article II Section 1 guarantees full local sovereignty over domestic laws, policing, and internal affairs. The Constitution simply establishes that for free, fully funded infrastructure and disaster relief, capital flows directly to contractors and workers performing the physical labor, rather than state treasuries.</p>
                 </div>
             </details>
 
@@ -833,9 +869,9 @@
                 <summary>Operations &amp; Heavy Industry</summary>
                 <div class="details-content">
                     <p><strong>Q: The Three-Bid System and Union mandates involve procedural steps. In a sudden disaster, won't this cause dangerous delays?</strong><br>
-                    A: The Charter explicitly separates acute emergency containment from long-term reconstruction. Phase 1 uses the First-Response Retainer System—pre-vetted emergency union crews deployed immediately to stop active damage. Phase 2 (Long-Term Remediation) defaults to the Three-Bid Middle Selection process to guarantee proper cost-engineering and structural safety.</p>
+                    A: The framework explicitly separates acute emergency containment from long-term reconstruction. Phase 1 uses the First-Response Retainer System—pre-vetted emergency union crews deployed immediately to stop active damage. Phase 2 (Long-Term Remediation) defaults to the Three-Bid Middle Selection process to guarantee proper cost-engineering and structural safety.</p>
                     <p><strong>Q: If local workers in a war-torn region lack specialized technical skills, how can the 75% local labor mandate be met?</strong><br>
-                    A: This is managed via the Hybrid Mentorship Model. The remaining 25% of the workforce consists of specialized international union journey-level workers and engineers who manage technical execution and run the job site as an active apprenticeship program. Upon project completion, the host nation receives both fully repaired infrastructure and a highly skilled workforce.</p>
+                    A: This is managed via the Hybrid Mentorship Model (Article I, Section 4). The remaining 25% of the workforce consists of specialized international union journey-level workers and engineers who manage technical execution and run the job site as an active apprenticeship program. Upon project completion, the host nation receives both fully repaired infrastructure and a highly skilled workforce.</p>
                 </div>
             </details>
         </section>
@@ -845,7 +881,7 @@
     <!-- Footer with Contact, Instagram, and Facebook Links -->
     <footer id="contact">
         <p><strong>WORLD TREATY FOR EARTH</strong></p>
-        <p>The Global Citizens' Charter | A Blueprint for Restitution and Peace</p>
+        <p>The Constitution for Earth | Making War Too Costly to Wage</p>
 
         <div class="footer-links">
             <div>
@@ -908,3 +944,4 @@
 
 </body>
 </html>
+
