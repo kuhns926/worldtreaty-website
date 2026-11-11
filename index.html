@@ -12,6 +12,7 @@
             --slate-100: #f1f5f9;
             --steel-blue: #3b82f6;
             --steel-blue-hover: #2563eb;
+            --steel-glow: rgba(59, 130, 246, 0.45);
             --text-main: #334155;
             --text-muted: #64748b;
         }
@@ -31,16 +32,37 @@
             line-height: 1.7;
             color: var(--text-main);
             background-color: var(--slate-100);
+            overflow-x: hidden;
+        }
+
+        /* Top Scroll Progress Bar */
+        #progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(15, 23, 42, 0.8);
+            z-index: 200;
+        }
+
+        #progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd);
+            box-shadow: 0 0 10px var(--steel-blue);
+            transition: width 0.1s ease-out;
         }
 
         /* Centered Sticky Navigation */
         nav {
-            background-color: var(--slate-900);
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(8px);
             position: sticky;
             top: 0;
             z-index: 100;
-            padding: 0.85rem 2rem; 
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+            padding: 0.95rem 2rem 0.85rem 2rem; 
+            box-shadow: 0 4px 12px -1px rgba(0, 0, 0, 0.25);
             border-bottom: 1px solid #1e293b;
         }
 
@@ -62,67 +84,103 @@
         .nav-links a {
             color: var(--slate-100);
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
             text-transform: uppercase;
-            transition: color 0.2s;
+            transition: color 0.2s, transform 0.2s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background-color: var(--steel-blue);
+            transition: width 0.25s ease;
         }
 
         .nav-links a:hover {
-            color: var(--steel-blue);
+            color: #60a5fa;
         }
 
-        /* Hero Header with Prominent Centered Logo */
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Header with Blueprint Grid & Animated Logo Glow */
         header {
-            background-color: var(--slate-800);
-            background-image: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+            background-color: var(--slate-900);
+            background-image: 
+                radial-gradient(circle at 50% 35%, rgba(59, 130, 246, 0.18) 0%, rgba(15, 23, 42, 0.95) 70%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 32px 32px, 32px 32px;
             color: white;
-            padding: 4rem 2rem 5rem 2rem;
+            padding: 4.5rem 2rem 5rem 2rem;
             text-align: center;
             border-bottom: 4px solid var(--steel-blue);
+            position: relative;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 15px 2px rgba(59, 130, 246, 0.35);
+            }
+            50% {
+                box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.7), 0 0 28px 6px rgba(59, 130, 246, 0.65);
+            }
         }
 
         .hero-logo-link {
             display: inline-block;
             margin-bottom: 1.75rem;
-            transition: transform 0.2s;
+            transition: transform 0.3s ease;
         }
 
         .hero-logo-link:hover {
-            transform: scale(1.02);
+            transform: scale(1.04);
         }
 
         .hero-logo {
-            height: 140px;
+            height: 155px;
             width: auto;
-            border-radius: 10px;
+            border-radius: 12px;
             display: block;
             margin: 0 auto;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 0 2px rgba(59, 130, 246, 0.4);
+            border: 2px solid rgba(96, 165, 250, 0.5);
+            animation: pulseGlow 4s infinite ease-in-out;
         }
 
         header h1 {
-            font-size: 3.25rem;
+            font-size: 3.35rem;
             margin-bottom: 1.25rem;
             letter-spacing: -1px;
             line-height: 1.15;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
         }
 
         .hero-label {
             display: inline-block;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
+            letter-spacing: 2.5px;
+            font-size: 0.85rem;
             font-weight: 700;
-            color: #94a3b8;
-            margin-bottom: 0.5rem;
+            color: #93c5fd;
+            background: rgba(59, 130, 246, 0.15);
+            padding: 0.3rem 0.9rem;
+            border-radius: 999px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            margin-bottom: 0.85rem;
         }
 
         .hero-mission {
-            font-size: 2.25rem;
+            font-size: 2.35rem;
             font-weight: 800;
-            color: var(--steel-blue);
+            color: #60a5fa;
             letter-spacing: -0.5px;
             margin-bottom: 0.75rem;
             line-height: 1.25;
@@ -139,21 +197,67 @@
         .hero-sub strong {
             color: white;
             font-weight: 700;
+            border-bottom: 2px solid var(--steel-blue);
         }
 
-        /* Main Content Areas */
+        /* Quick Stat Bar under Header */
+        .stat-banner {
+            background: var(--slate-800);
+            color: white;
+            border-bottom: 1px solid #334155;
+            padding: 1.25rem 2rem;
+        }
+
+        .stat-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 0.5rem;
+        }
+
+        .stat-num {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #60a5fa;
+            display: block;
+            line-height: 1.2;
+        }
+
+        .stat-desc {
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Main Content Areas & Scroll Reveal Animation */
         main {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 3.5rem 2rem;
         }
 
         section {
             margin-bottom: 4rem;
             background: white;
             padding: 3rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         h2 {
@@ -161,14 +265,22 @@
             font-size: 2rem;
             margin-bottom: 1.5rem;
             border-bottom: 2px solid var(--slate-100);
-            padding-bottom: 0.5rem;
+            padding-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        h2 svg {
+            color: var(--steel-blue);
+            flex-shrink: 0;
         }
 
         h3 {
             color: var(--slate-800);
             font-size: 1.25rem;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
         }
 
         p {
@@ -176,17 +288,67 @@
         }
 
         .highlight-box {
-            background-color: var(--slate-100);
-            border-left: 4px solid var(--steel-blue);
-            padding: 1.75rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
+            border-left: 5px solid var(--steel-blue);
+            padding: 2rem;
             margin: 2rem 0;
-            border-radius: 0 6px 6px 0;
+            border-radius: 0 8px 8px 0;
+            box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.12);
         }
 
         .highlight-box p:last-child {
             margin-bottom: 0;
         }
 
+        /* 3 Pillars Interactive Cards Grid */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .pillar-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-top: 4px solid var(--steel-blue);
+            border-radius: 8px;
+            padding: 1.75rem 1.5rem;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 20px -5px rgba(15, 23, 42, 0.1);
+            border-color: var(--steel-blue);
+            background: white;
+        }
+
+        .pillar-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(59, 130, 246, 0.12);
+            color: var(--steel-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .pillar-card h3 {
+            margin-top: 0;
+            font-size: 1.2rem;
+            color: var(--slate-900);
+        }
+
+        .pillar-card ul {
+            margin-left: 1.2rem;
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Call To Action Button */
         .cta-container {
             text-align: center;
             margin-top: 2.5rem;
@@ -195,59 +357,100 @@
         }
 
         .pledge-btn {
-            background-color: var(--steel-blue);
+            background: linear-gradient(135deg, var(--steel-blue) 0%, var(--steel-blue-hover) 100%);
             color: white;
-            padding: 1rem 2.5rem;
+            padding: 1.1rem 2.75rem;
             text-decoration: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-weight: 700;
             font-size: 1.2rem;
-            display: inline-block;
-            transition: background-color 0.2s, transform 0.1s;
-            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 6px 15px -3px rgba(59, 130, 246, 0.45);
         }
 
         .pledge-btn:hover {
-            background-color: var(--steel-blue-hover);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -3px rgba(59, 130, 246, 0.6);
         }
 
-        /* Accordion for CLRT and FAQ */
+        /* Interactive Accordions for CLRT and FAQ */
         details {
             background-color: var(--slate-100);
-            margin-bottom: 1rem;
-            border-radius: 6px;
+            margin-bottom: 0.85rem;
+            border-radius: 8px;
             overflow: hidden;
+            border: 1px solid #e2e8f0;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        details:hover {
+            border-color: #cbd5e1;
+        }
+
+        details[open] {
+            border-color: var(--steel-blue);
+            border-left: 4px solid var(--steel-blue);
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
         }
 
         summary {
-            padding: 1.25rem;
+            padding: 1.2rem 3rem 1.2rem 1.25rem;
             cursor: pointer;
             font-weight: 600;
             color: var(--slate-900);
-            background-color: #e2e8f0;
+            background-color: #f1f5f9;
             list-style: none;
             position: relative;
-            transition: background-color 0.2s;
+            transition: background-color 0.2s, color 0.2s;
         }
 
         summary::-webkit-details-marker {
             display: none;
         }
 
+        /* Animated + / x Icon on Accordions */
+        summary::after {
+            content: '+';
+            position: absolute;
+            right: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--steel-blue);
+            transition: transform 0.25s ease;
+            line-height: 1;
+        }
+
+        details[open] summary::after {
+            transform: translateY(-50%) rotate(45deg);
+        }
+
         summary:hover {
-            background-color: #cbd5e1;
+            background-color: #e2e8f0;
         }
 
         details[open] summary {
-            border-bottom: 1px solid #cbd5e1;
+            background-color: #eff6ff;
+            color: var(--steel-blue-hover);
+            border-bottom: 1px solid #dbeafe;
+        }
+
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        details[open] .details-content {
+            animation: fadeDown 0.25s ease-out;
         }
 
         details .details-content {
             padding: 1.5rem;
             background-color: white;
-            border: 1px solid #e2e8f0;
-            border-top: none;
         }
 
         ul {
@@ -266,6 +469,7 @@
             text-align: center;
             padding: 3.5rem 2rem;
             margin-top: 2rem;
+            border-top: 3px solid var(--steel-blue);
         }
 
         .footer-links {
@@ -286,11 +490,12 @@
             color: #60a5fa;
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.2s;
+            transition: color 0.2s, transform 0.2s;
         }
 
         .social-link:hover {
             color: #ffffff;
+            transform: translateY(-1px);
         }
 
         .divider {
@@ -299,18 +504,24 @@
 
         @media (max-width: 640px) {
             .nav-links { gap: 1rem; }
-            .nav-links a { font-size: 0.85rem; }
-            .hero-logo { height: 110px; }
+            .nav-links a { font-size: 0.8rem; }
+            .hero-logo { height: 120px; }
             header h1 { font-size: 2.25rem; }
             .hero-mission { font-size: 1.65rem; }
             .hero-sub { font-size: 1.15rem; }
+            .stat-grid { grid-template-columns: 1fr; gap: 0.5rem; }
             section { padding: 1.75rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Centered Navigation Bar -->
+    <!-- Top Reading Progress Bar -->
+    <div id="progress-container">
+        <div id="progress-bar"></div>
+    </div>
+
+    <!-- Centered Sticky Navigation Bar -->
     <nav>
         <div class="nav-container">
             <div class="nav-links">
@@ -324,21 +535,45 @@
         </div>
     </nav>
 
-    <!-- Hero Header with Prominent Logo Outside the Menu Bar -->
+    <!-- Hero Header with Blueprint Grid & Glowing Logo -->
     <header>
         <a href="#" class="hero-logo-link">
-            <img src="wte-logo-3.jpg" alt="World Treaty for Earth Logo" class="hero-logo">
+            <img src="worldtreatypic.jpg" alt="World Treaty for Earth Logo" class="hero-logo">
         </a>
         <h1>World Treaty for Earth</h1>
         <div class="hero-label">Our Mission</div>
         <div class="hero-mission">Making War Too Costly to Wage</div>
         <p class="hero-sub">Building Infrastructure &amp; Peace, <strong>Point Blank.</strong></p>
-    </header>  
+    </header>
+
+    <!-- Quick Visual Key Metrics Banner -->
+    <div class="stat-banner">
+        <div class="stat-grid">
+            <div class="stat-item">
+                <span class="stat-num">51% Dual-Lock</span>
+                <span class="stat-desc">States + Global Population</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num">0% to Politicians</span>
+                <span class="stat-desc">Direct-to-Worker Routing</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num">100-Year Trust</span>
+                <span class="stat-desc">Union Rebuilding &amp; Upkeep</span>
+            </div>
+        </div>
+    </div>
 
     <main>
         <!-- MISSION & CONTEXT SECTION -->
         <section id="reality"> 
-            <h2>A New Path Forward</h2> 
+            <h2>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                </svg>
+                A New Path Forward
+            </h2> 
             
             <p>The world is not at peace, and the current systems are clearly failing us. Earth needs new representation. For too long, humanity has kept a sledgehammer ready to crush an ant colony—holding the power of total destruction while hoping we never have to use it.</p> 
             
@@ -355,51 +590,105 @@
 
         <!-- PREAMBLE SECTION -->
         <section id="preamble">
-            <h2>Preamble</h2>
+            <h2>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                Preamble
+            </h2>
             <p>For generations, the devastating costs of war and ecological ruin have been outsourced to the working class, while the architects of that destruction hide behind diplomatic immunity, state treasuries, and geopolitical vetoes. The world can no longer afford an international system where peace is treated as a political favor and accountability is lost in the machinery of corrupt governments. We stand at a necessary turning point in human history, rejecting the fragile, easily broken treaties of the past in favor of a new, undeniable gravity: an automated system of economic consequence where aggression guarantees financial ruin, and the power to govern the global commons is permanently secured by the majority of humanity.</p>
             
             <p>The World Treaty charter is a declaration of systemic reform, built not on empty diplomacy, but on the grounded reality of heavy industry, honest labor, and absolute liability. By seizing the hidden wealth of those who ignite conflict and routing it entirely outside of state bureaucracies, we channel restitution directly into the hands of the unionized workers and aid organizations who physically repair the damage and care for the populace. This is our blueprint for a world where peace is mathematically enforced, where sovereign boundaries are respected without sacrificing the environment, and where the future is rebuilt—steel by steel, and foundation by foundation—by making those accountable who cause the destruction of our planet in the first place.</p>
 
-            <!-- The Pledge Button cleanly anchored inside the Preamble card -->
             <div class="cta-container">
                 <a href="mailto:policy@worldtreaty.earth?subject=I Support The World Treaty&body=I pledge my support for the CLRT framework." class="pledge-btn">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
                     Take the Pledge
                 </a>
             </div>
         </section>
 
-        <!-- THE THREE PILLARS SECTION -->
+        <!-- THE THREE PILLARS SECTION (Visual Card Grid) -->
         <section id="pillars">
-            <h2>The Three Pillars</h2>
+            <h2>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+                The Three Pillars
+            </h2>
+            <p>Rather than relying on empty promises, the Charter operates on three interlocking mechanical safeguards:</p>
 
-            <h3>Pillar I: The Democratic Structure (The 51% Double-Majority)</h3>
-            <p>To prevent gridlock while ensuring democratic fairness, the Charter utilizes a dual-lock voting mechanism:</p>
-            <ul>
-                <li><strong>The Tipping Point:</strong> Global initiatives, emergency responses, or financial penalties become binding law the moment 51% of participating nations double-majority vote in favor.</li>
-                <li><strong>The Population Safeguard:</strong> To prevent a coalition of microstates from overriding the global consensus, passing votes require an absolute demographic mandate. Regardless of how many nations participate in the Charter, a measure only becomes binding if the specific nations voting in favor possess a combined population that meets or exceeds 51% of the total human population on Earth.</li>
-            </ul>
+            <div class="pillars-grid">
+                <!-- Pillar 1 Card -->
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                    </div>
+                    <h3>Pillar I: The 51% Double-Majority</h3>
+                    <p>A dual-lock voting mechanism that prevents gridlock while guaranteeing fairness:</p>
+                    <ul>
+                        <li><strong>The Tipping Point:</strong> Measures become binding law when 51% of participating nations vote in favor.</li>
+                        <li><strong>Population Safeguard:</strong> Passing votes must also represent at least 51% of the total human population on Earth.</li>
+                    </ul>
+                </div>
 
-            <h3>Pillar II: Automated Financial Enforcement</h3>
-            <p>The system holds powerful nations and corporate polluters accountable without military intervention, utilizing pre-programmed economic consequences:</p>
-            <ul>
-                <li><strong>Targeted Asset Seizure:</strong> Compliant nations are legally required to freeze the foreign currency reserves and overseas investments of violating states.</li>
-                <li><strong>The Oligarch-First Extraction:</strong> Seizures specifically target the offshore accounts, luxury real estate, and corporate assets of political leaders and oligarchs, shielding the civilian working class from immediate economic collapse.</li>
-                <li><strong>The Eco-Tariff:</strong> Non-compliant nations face a unified, mandatory tariff on all exports, rendering their goods too expensive for global trade until restitution is paid.</li>
-            </ul>
+                <!-- Pillar 2 Card -->
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                    </div>
+                    <h3>Pillar II: Automated Enforcement</h3>
+                    <p>Pre-programmed economic consequences that stop aggressors without firing a shot:</p>
+                    <ul>
+                        <li><strong>Targeted Asset Seizure:</strong> Mandatory freezing of foreign reserves of violating states.</li>
+                        <li><strong>Oligarch-First Extraction:</strong> Targets offshore wealth and luxury estates of leaders, shielding working citizens.</li>
+                        <li><strong>The Eco-Tariff:</strong> Mandatory global export tariffs until restitution is paid.</li>
+                    </ul>
+                </div>
 
-            <h3>Pillar III: The Conflict Liability &amp; Restitution Treaty (CLRT)</h3>
-            <p>A specialized legal doctrine designed to make the long-term cost of an offensive war or ecological disaster economically ruinous for the perpetrators:</p>
-            <ul>
-                <li><strong>Absolute Liability:</strong> Aggressors are billed for all destroyed infrastructure and displaced citizens, regardless of military outcomes.</li>
-                <li><strong>The Human Cost Ledger:</strong> Financial penalties include automatic daily stipends routed directly to neighboring nations hosting refugees, alongside mandatory funding for generational health trusts and affected veterans and civilians.</li>
-                <li><strong>The Peace Escrow:</strong> To prevent conflict flare-ups, seized assets are held in a blind escrow during ceasefires and released back to the aggressor incrementally, strictly contingent on continued demilitarization and peace.</li>
-            </ul>
+                <!-- Pillar 3 Card -->
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                        </svg>
+                    </div>
+                    <h3>Pillar III: Restitution &amp; Rebuilding</h3>
+                    <p>Making offensive war economically ruinous while physically rebuilding communities:</p>
+                    <ul>
+                        <li><strong>Absolute Liability:</strong> Aggressors pay for every bridge, pipe, power plant, and home destroyed.</li>
+                        <li><strong>The Human Cost Ledger:</strong> Direct daily stipends for refugee care and healthcare trusts.</li>
+                        <li><strong>The Peace Escrow:</strong> Seized funds held in escrow until demilitarization is verified.</li>
+                    </ul>
+                </div>
+            </div>
         </section>
 
         <!-- CLRT SECTION (ACCORDION TABS) -->
         <section id="clrt">
-            <h2>The Conflict Liability &amp; Restitution Treaty (CLRT)</h2>
-            <p><strong>Purpose:</strong> This law guarantees that any government that starts a war will pay for the damage they cause. It ensures that the leaders who start the war lose their wealth, while protecting everyday working citizens. It makes peace the only affordable choice.</p>
+            <h2>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                The Conflict Liability &amp; Restitution Treaty (CLRT)
+            </h2>
+            <p><strong>Purpose:</strong> This law guarantees that any government that starts a war will pay for the damage they cause. It ensures that the leaders who start the war lose their wealth, while protecting everyday working citizens. Click any article below to inspect the mechanism:</p>
             
             <details>
                 <summary>Article 1: You Break It, You Buy It (Total Liability)</summary>
@@ -497,7 +786,14 @@
 
         <!-- FAQ SECTION -->
         <section id="faq">
-            <h2>Defensive FAQ: Anticipating Criticisms</h2>
+            <h2>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+                Defensive FAQ: Anticipating Criticisms
+            </h2>
             
             <details>
                 <summary>Democracy &amp; Power Dynamics</summary>
@@ -578,14 +874,35 @@
             </a>
         </div>
 
-        <!-- The script that builds the real link when the page loads -->
         <script>
+            // 1. Obfuscated email builder
             var user = "policy";
             var domain = "worldtreaty.earth";
-            
             var contactLink = document.getElementById("obfuscated-email");
             contactLink.href = "mailto:" + user + "@" + domain;
             contactLink.innerHTML = user + "@" + domain;
+
+            // 2. Top Scroll Reading Progress Bar
+            window.addEventListener("scroll", function() {
+                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                var progress = (scrollTop / scrollHeight) * 100;
+                document.getElementById("progress-bar").style.width = progress + "%";
+            });
+
+            // 3. Smooth Scroll-Reveal for Sections
+            var sections = document.querySelectorAll("section");
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            }, { threshold: 0.12 });
+
+            sections.forEach(function(sec) {
+                observer.observe(sec);
+            });
         </script>
     </footer>
 
