@@ -33,43 +33,39 @@
             background-color: var(--slate-100);
         }
 
-        /* Navigation */
+        /* Centered Sticky Navigation */
         nav {
             background-color: var(--slate-900);
             position: sticky;
             top: 0;
             z-index: 100;
-            padding: 0.5rem 2rem; 
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.15);
+            padding: 0.85rem 2rem; 
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid #1e293b;
         }
 
         .nav-container {
             max-width: 1000px;
             margin: 0 auto;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
         }
 
         .nav-links {
             display: flex;
             flex-wrap: wrap;
-            gap: 1.5rem;
+            justify-content: center;
+            gap: 2rem;
         }
 
         .nav-links a {
             color: var(--slate-100);
             text-decoration: none;
             font-size: 0.95rem;
-            font-weight: 500;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
             transition: color 0.2s;
         }
 
@@ -77,19 +73,38 @@
             color: var(--steel-blue);
         }
 
-        /* Hero Header */
+        /* Hero Header with Prominent Centered Logo */
         header {
             background-color: var(--slate-800);
             background-image: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
             color: white;
-            padding: 5.5rem 2rem;
+            padding: 4rem 2rem 5rem 2rem;
             text-align: center;
             border-bottom: 4px solid var(--steel-blue);
         }
 
+        .hero-logo-link {
+            display: inline-block;
+            margin-bottom: 1.75rem;
+            transition: transform 0.2s;
+        }
+
+        .hero-logo-link:hover {
+            transform: scale(1.02);
+        }
+
+        .hero-logo {
+            height: 140px;
+            width: auto;
+            border-radius: 10px;
+            display: block;
+            margin: 0 auto;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 0 2px rgba(59, 130, 246, 0.4);
+        }
+
         header h1 {
             font-size: 3.25rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
             letter-spacing: -1px;
             line-height: 1.15;
         }
@@ -283,6 +298,9 @@
         }
 
         @media (max-width: 640px) {
+            .nav-links { gap: 1rem; }
+            .nav-links a { font-size: 0.85rem; }
+            .hero-logo { height: 110px; }
             header h1 { font-size: 2.25rem; }
             .hero-mission { font-size: 1.65rem; }
             .hero-sub { font-size: 1.15rem; }
@@ -292,11 +310,9 @@
 </head>
 <body>
 
+    <!-- Centered Navigation Bar -->
     <nav>
         <div class="nav-container">
-            <a href="#" class="nav-logo">
-                <img src="wte-logo-3.jpg" alt="World Treaty Logo" style="height: 75px; width: auto; border-radius: 4px; display: block;">
-            </a>
             <div class="nav-links">
                 <a href="#reality">Mission</a>
                 <a href="#preamble">Preamble</a>
@@ -308,7 +324,11 @@
         </div>
     </nav>
 
+    <!-- Hero Header with Prominent Logo Outside the Menu Bar -->
     <header>
+        <a href="#" class="hero-logo-link">
+            <img src="worldtreatypic.jpg" alt="World Treaty for Earth Logo" class="hero-logo">
+        </a>
         <h1>World Treaty for Earth</h1>
         <div class="hero-label">Our Mission</div>
         <div class="hero-mission">Making War Too Costly to Wage</div>
@@ -571,4 +591,5 @@
 
 </body>
 </html>
+
 
