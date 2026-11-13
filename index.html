@@ -1,497 +1,236 @@
-<style>
-  :root {
-    --bg-dark: #0b1120;
-    --card-bg: #1e293b;
-    --border-col: #334155;
-    --accent-blue: #38bdf8;
-    --accent-glow: rgba(56, 189, 248, 0.18);
-    --text-main: #f8fafc;
-    --text-muted: #cbd5e1;
-  }
-
-  .wt-app-container {
-    max-width: 960px;
-    margin: 0 auto;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    color: var(--text-main);
-    background: var(--bg-dark);
-    padding: 2rem 1.5rem;
-    border-radius: 16px;
-  }
-
-  /* TOP SOVEREIGNTY BANNER */
-  .wt-sovereignty-banner {
-    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-    border: 2px solid var(--accent-blue);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin-bottom: 1.75rem;
-    box-shadow: 0 8px 30px var(--accent-glow);
-  }
-  .wt-sovereignty-alert {
-    margin: 0 0 0.75rem 0;
-    font-size: 1.15rem;
-    font-weight: 900;
-    color: var(--accent-blue);
-    letter-spacing: 0.03em;
-    line-height: 1.4;
-    text-transform: uppercase;
-  }
-  .wt-sovereignty-sub {
-    margin: 0;
-    font-size: 0.98rem;
-    line-height: 1.6;
-    color: var(--text-muted);
-  }
-
-  /* PREAMBLE & CONTROLS */
-  .wt-header-bar {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    border-left: 4px solid var(--accent-blue);
-    padding: 1.25rem 1.5rem;
-    background: var(--card-bg);
-    border-radius: 0 10px 10px 0;
-    margin-bottom: 1.75rem;
-  }
-  .wt-header-text {
-    flex: 1 1 500px;
-  }
-  .wt-header-text h2 {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.5rem;
-    color: #ffffff;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-  .wt-header-text p {
-    margin: 0;
-    line-height: 1.6;
-    color: var(--text-muted);
-  }
-  .wt-toggle-all-btn {
-    background: rgba(56, 189, 248, 0.15);
-    color: var(--accent-blue);
-    border: 1px solid var(--accent-blue);
-    padding: 0.6rem 1.1rem;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  .wt-toggle-all-btn:hover {
-    background: var(--accent-blue);
-    color: #0b1120;
-  }
-
-  /* ARTICLE CARDS */
-  .wt-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-col);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin-bottom: 1.25rem;
-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-  }
-  .wt-card:hover {
-    border-color: var(--accent-blue);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
-  }
-  .wt-headline {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: #ffffff;
-  }
-  .wt-quickread {
-    margin: 0 0 1rem 0;
-    font-size: 1rem;
-    line-height: 1.55;
-    color: var(--text-muted);
-  }
-
-  /* JS ACCORDION BUTTON & DRAWER */
-  .wt-acc-btn {
-    width: 100%;
-    text-align: left;
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid var(--border-col);
-    color: var(--accent-blue);
-    padding: 0.65rem 1rem;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: background 0.2s ease;
-  }
-  .wt-acc-btn:hover {
-    background: rgba(56, 189, 248, 0.12);
-  }
-  .wt-acc-btn.active {
-    color: #fca5a5;
-    border-color: rgba(248, 113, 113, 0.4);
-  }
-  .wt-acc-panel {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.35s ease-out;
-  }
-  .wt-policy-body {
-    padding-top: 1rem;
-    margin-top: 0.75rem;
-    border-top: 1px dashed var(--border-col);
-    font-size: 0.95rem;
-    line-height: 1.65;
-    color: #e2e8f0;
-  }
-  .wt-policy-body ul {
-    margin: 0;
-    padding-left: 1.2rem;
-  }
-  .wt-policy-body li {
-    margin-bottom: 0.85rem;
-  }
-
-  /* CLICKABLE MEDIA & SOCIAL SHOWCASE GRID */
-  .wt-media-section {
-    margin: 2.5rem 0;
-    padding: 1.75rem;
-    background: linear-gradient(180deg, #131c31 0%, #0f172a 100%);
-    border: 1px solid var(--border-col);
-    border-radius: 14px;
-  }
-  .wt-media-header {
-    text-align: center;
-    margin-bottom: 1.5rem;
-  }
-  .wt-media-header h3 {
-    margin: 0 0 0.4rem 0;
-    font-size: 1.35rem;
-    color: #ffffff;
-  }
-  .wt-media-header p {
-    margin: 0;
-    font-size: 0.95rem;
-    color: var(--text-muted);
-  }
-  .wt-media-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.25rem;
-  }
-  .wt-media-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-col);
-    border-radius: 10px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.25s ease, border-color 0.25s ease;
-  }
-  .wt-media-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--accent-blue);
-  }
-  .wt-media-thumb-link {
-    position: relative;
-    display: block;
-    aspect-ratio: 4 / 5;
-    background: #090d16;
-    overflow: hidden;
-    text-decoration: none;
-  }
-  .wt-media-thumb-link img,
-  .wt-media-thumb-link video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.35s ease;
-  }
-  .wt-media-card:hover .wt-media-thumb-link img,
-  .wt-media-card:hover .wt-media-thumb-link video {
-    transform: scale(1.04);
-  }
-  .wt-play-badge {
-    position: absolute;
-    bottom: 12px;
-    right: 12px;
-    background: rgba(15, 23, 42, 0.85);
-    color: #ffffff;
-    padding: 0.35rem 0.7rem;
-    border-radius: 6px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    border: 1px solid var(--accent-blue);
-  }
-  .wt-media-info {
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    justify-content: space-between;
-  }
-  .wt-media-title {
-    margin: 0 0 0.75rem 0;
-    font-size: 0.98rem;
-    font-weight: 700;
-    color: #ffffff;
-    line-height: 1.4;
-  }
-  .wt-social-btn-group {
-    display: flex;
-    gap: 0.5rem;
-  }
-  .wt-social-btn {
-    flex: 1;
-    text-align: center;
-    padding: 0.5rem 0.6rem;
-    border-radius: 6px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-decoration: none;
-    transition: opacity 0.2s ease;
-  }
-  .wt-social-btn:hover {
-    opacity: 0.88;
-  }
-  .wt-btn-ig {
-    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-    color: #ffffff;
-  }
-  .wt-btn-fb {
-    background: #1877f2;
-    color: #ffffff;
-  }
-</style>
-
-<div class="wt-app-container">
-
-  <!-- TOP SOVEREIGNTY GUARANTEE BANNER -->
-  <div class="wt-sovereignty-banner">
-    <p class="wt-sovereignty-alert">
-      ALL INDIVIDUAL GOVERNMENTS RETAIN COMPLETE CONTROL OF THEIR OWN GOVERNANCE—BARRING DIRECT VIOLATIONS OF THE CONSTITUTION FOR EARTH.
-    </p>
-    <p class="wt-sovereignty-sub">
-      This Charter does not create a global super-state, erase borders, or interfere in domestic laws, constitutional rights, tax policies, or local cultures. Nations govern themselves with 100% autonomy—bounded only by one planetary rule: <strong>no regime, oligarch, or military command has the right to initiate cross-border destruction or externalize catastrophic ruin onto their neighbors or the shared planetary atmosphere and biosphere.</strong>
-    </p>
-  </div>
-
-  <!-- PREAMBLE & JS EXPAND ALL BUTTON -->
-  <div class="wt-header-bar">
-    <div class="wt-header-text">
-      <h2>The Constitution for Earth</h2>
-      <p><strong>The Planetary Floor of Law:</strong> Recognizing that Earth’s atmosphere, oceans, and civil infrastructure form an indivisible life-support system, we establish this binding framework of restitution, stewardship, and human survival.</p>
-    </div>
-    <button class="wt-toggle-all-btn" id="wtToggleAll" onclick="toggleAllArticles()">
-      + Expand All Articles
-    </button>
-  </div>
-
-  <!-- ARTICLE I -->
-  <div class="wt-card">
-    <h3 class="wt-headline">ARTICLE I: The Conflict Liability & Restitution Mandate (CLRT)</h3>
-    <p class="wt-quickread">Makes war financially fatal to those who orchestrate it. Aggressors pay 100% of reconstruction costs for <strong>all civilian infrastructure and essential life systems</strong>—seizing the wealth of political architects, oligarchs, and top military command first, backed by a mandatory 10% national GDP levy until every affected community is made whole.</p>
-    <button class="wt-acc-btn" onclick="toggleAccordion(this)">
-      <span class="wt-btn-label">+ Read Full Policy Architecture</span>
-      <span>▼</span>
-    </button>
-    <div class="wt-acc-panel">
-      <div class="wt-policy-body">
-        <ul>
-          <li><strong>Section 1.1 — Comprehensive Liability for Civilian Destruction:</strong> Any state, regime, or armed faction that initiates kinetic, cyber, or asymmetric aggression is strictly liable for 100% of verified physical, economic, and ecological reconstruction costs. Covered damages encompass <strong>all civilian life-support, municipal, residential, and economic systems—including, without limitation:</strong> homes, hospitals, medical facilities, electrical grids, water treatment and distribution plants, agricultural land, food supply chains, bridges, transportation networks, schools, and communications infrastructure.</li>
-          <li><strong>Section 1.2 — Tier 1 Liability (The Architects & Strategic Command):</strong> Primary enforcement immediately freezes, seizes, and liquidates 100% of the personal, offshore, beneficial, and corporate wealth of all individuals who hold executive, legislative, financial, or strategic authority over the planning, authorization, or execution of aggression. This encompasses <strong>all top-tier decision-makers—including, without limitation:</strong> Heads of State, Cabinet Ministers, Oligarchic Financiers, Defense Contractors, and Strategic High Command (Ministers of Defense, Chiefs of Staff, and Flag/General Officers). Standard enlisted personnel, field officers without strategic war-planning authority, and everyday civilians remain 100% exempt from personal asset seizure.</li>
-          <li><strong>Section 1.3 — Tier 2 Sovereign Backstop (The 10% GDP Rule):</strong> Where Tier 1 seizures cannot satisfy total verified damages—or where leadership holds insufficient personal capital—the attacking state’s economy is assessed an automatic <strong>Sovereign Restitution Levy capped at 10% of annual Gross Domestic Product (GDP)</strong>. Collected across all international trade clearinghouses, sovereign wealth instruments, and commodity exports (including, without limitation, oil, gas, minerals, and manufactured goods), this levy remains active year-over-year until 100% of the restitution debt is satisfied.</li>
-          <li><strong>Section 1.4 — Zero-Interference Escrow Routing:</strong> All restitution funds bypass political intermediaries and route directly into audited reconstruction escrow accounts dedicated exclusively to rehabilitating damaged communities and essential systems.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- ARTICLE II (UPDATED WITH DOMESTIC ATMOSPHERE & BIOSPHERE CLAUSE) -->
-  <div class="wt-card">
-    <h3 class="wt-headline">ARTICLE II: Planetary Biosphere & Climate Accountability</h3>
-    <p class="wt-quickread">Abolishes all military, industrial, and domestic pollution loopholes. Because Earth shares a single atmosphere and ocean system, no regime may poison its own skies or waters to the detriment of the planet—every missile fired or ecosystem ruined triggers an automatic global remediation levy.</p>
-    <button class="wt-acc-btn" onclick="toggleAccordion(this)">
-      <span class="wt-btn-label">+ Read Full Policy Architecture</span>
-      <span>▼</span>
-    </button>
-    <div class="wt-acc-panel">
-      <div class="wt-policy-body">
-        <ul>
-          <li><strong>Section 2.1 — Total Elimination of Sovereign & Military Exemptions:</strong> All military, defense, and industrial exemptions from environmental and emissions reporting are permanently abolished. Every state and corporate entity is strictly accountable for <strong>all forms of biosphere degradation—including, without limitation:</strong> greenhouse gas emissions, stratospheric soot, heavy metal fallout, chemical runoff, radiological contamination, and marine pollution.</li>
-          <li><strong>Section 2.2 — Transboundary Liability for Domestic Atmosphere & Ecological Ruin:</strong> Because the planetary atmosphere, stratosphere, hydrologic cycle, and oceans form a single, borderless life-support system, <strong>no state may claim domestic jurisdiction to justify catastrophic environmental destruction within its own borders that degrades the shared global biosphere.</strong> Any severe domestic atmospheric pollution, mass burning of fossil reserves or carbon sinks, or unmitigated toxic release within national territory that measurably impacts global climate stability or transboundary ecosystems is strictly subject to planetary restitution levies.</li>
-          <li><strong>Section 2.3 — Automated Ecological Restitution & Remediation:</strong> Every kinetic strike, munitions detonation, domestic or cross-border scorched-earth operation, or unmitigated industrial discharge carries a mandatory financial assessment calculated via independent planetary telemetry, routing 100% of funds into closed-loop atmospheric, soil, and ocean restoration.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- CLICKABLE VISUAL MEDIA SHOWCASE (LINKS STRAIGHT TO IG & FB) -->
-  <div class="wt-media-section">
-    <div class="wt-media-header">
-      <h3>Watch & Share the Mission</h3>
-      <p>Click any video or briefing below to join the conversation on Instagram and Facebook.</p>
-    </div>
-
-    <div class="wt-media-grid">
-      <!-- MEDIA CARD 1: REEL VIDEO -->
-      <div class="wt-media-card">
-        <a href="https://www.instagram.com/treatyforearth/" target="_blank" rel="noopener" class="wt-media-thumb-link">
-          <!-- Replace src with your hosted video file or thumbnail image -->
-          <video autoplay loop muted playsinline poster="your-thumbnail-1.jpg">
-            <source src="your-reel-video.mp4" type="video/mp4">
-          </video>
-          <span class="wt-play-badge">▶ Watch Reel</span>
-        </a>
-        <div class="wt-media-info">
-          <p class="wt-media-title">Why Do Leaders Destroy Critical Infrastructure Without Consequence?</p>
-          <div class="wt-social-btn-group">
-            <a href="https://www.instagram.com/treatyforearth/" target="_blank" rel="noopener" class="wt-social-btn wt-btn-ig">Instagram</a>
-            <a href="https://www.facebook.com/treatyforearth" target="_blank" rel="noopener" class="wt-social-btn wt-btn-fb">Facebook</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- MEDIA CARD 2: CAROUSEL / IMAGE -->
-      <div class="wt-media-card">
-        <a href="https://www.instagram.com/treatyforearth/" target="_blank" rel="noopener" class="wt-media-thumb-link">
-          <!-- Replace src with your carousel cover image -->
-          <img src="your-carousel-cover-1.jpg" alt="10% GDP Rule & Accountability">
-          <span class="wt-play-badge">📖 View Briefing</span>
-        </a>
-        <div class="wt-media-info">
-          <p class="wt-media-title">The Two-Tier Restitution Waterfall: Making War Financially Fatal</p>
-          <div class="wt-social-btn-group">
-            <a href="https://www.instagram.com/treatyforearth/" target="_blank" rel="noopener" class="wt-social-btn wt-btn-ig">Instagram</a>
-            <a href="https://www.facebook.com/treatyforearth" target="_blank" rel="noopener" class="wt-social-btn wt-btn-fb">Facebook</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- MEDIA CARD 3: CLIMATE & BIOSPHERE -->
-      <div class="wt-media-card">
-        <a href="https://www.instagram.com/treatyforearth/" target="_blank" rel="noopener" class="wt-media-thumb-link">
-          <!-- Replace src with your climate post cover image -->
-          <img src="your-carousel-cover-2.jpg" alt="Closing the Military Climate Loophole">
-          <span class="wt-play-badge">🌍 View Post</span>
-        </a>
-        <div class="wt-media-info">
-          <p class="wt-media-title">Every Missile Fired Hits Our Atmosphere: Closing the Military Loophole</p>
-          <div class="wt-social-btn-group">
-            <a href="https://www.instagram.com/treatyforearth/" target="_blank" rel="noopener" class="wt-social-btn wt-btn-ig">Instagram</a>
-            <a href="https://www.facebook.com/treatyforearth" target="_blank" rel="noopener" class="wt-social-btn wt-btn-fb">Facebook</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ARTICLE III -->
-  <div class="wt-card">
-    <h3 class="wt-headline">ARTICLE III: The Sovereign Commons & Essential Infrastructure Standard</h3>
-    <p class="wt-quickread">Protects all foundational human survival systems—water, energy, shelter, sanitation, and food security—as inviolable rights. Mandates open-source, resilient engineering blueprints for global crisis recovery and reconstruction.</p>
-    <button class="wt-acc-btn" onclick="toggleAccordion(this)">
-      <span class="wt-btn-label">+ Read Full Policy Architecture</span>
-      <span>▼</span>
-    </button>
-    <div class="wt-acc-panel">
-      <div class="wt-policy-body">
-        <ul>
-          <li><strong>Section 3.1 — Inviolable Survival Rights:</strong> Access to the physical foundations of human life—<strong>including, without limitation, clean potable water, baseline electricity, durable shelter, sanitation, and food security</strong>—is recognized as an inviolable right protected against geopolitical weaponization, blockade, or predatory monopolization.</li>
-          <li><strong>Section 3.2 — Open-Source Civil Blueprints:</strong> Planetary reconstruction and municipal development prioritize standardized, modular, closed-loop civil engineering (including, without limitation, zero-liquid-discharge water desalination, decentralized renewable microgrids, durable modular housing, and resilient utility conduits) maintained as open-source public blueprints available to all communities.</li>
-          <li><strong>Section 3.3 — Resilient Reconstruction Mandate:</strong> All post-conflict and post-disaster rebuilding funded under Articles I and II must meet resilient, non-polluting, closed-loop engineering standards rather than reinstating vulnerable legacy infrastructure.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- ARTICLE IV -->
-  <div class="wt-card">
-    <h3 class="wt-headline">ARTICLE IV: Human Labor & The Automation Dividend</h3>
-    <p class="wt-quickread">Protects working families and skilled trades across every sector. Guarantees fair-wage labor and apprenticeship pipelines for all planetary rebuilding while taxing large-scale autonomous production to support local communities.</p>
-    <button class="wt-acc-btn" onclick="toggleAccordion(this)">
-      <span class="wt-btn-label">+ Read Full Policy Architecture</span>
-      <span>▼</span>
-    </button>
-    <div class="wt-acc-panel">
-      <div class="wt-policy-body">
-        <ul>
-          <li><strong>Section 4.1 — Universal Protection of Skilled Labor:</strong> All reconstruction, infrastructure, and remediation projects governed by this Constitution mandate fair living wages, safe working conditions, recognized collective bargaining and union protections, and structured apprenticeship programs across <strong>all participating trades and labor sectors—including, without limitation:</strong> construction, pipefitting, electrical, fabrication, engineering, agriculture, logistics, and environmental remediation.</li>
-          <li><strong>Section 4.2 — The Industrial Automation Levy:</strong> As artificial intelligence, autonomous robotics, and algorithmic systems displace human labor across any industrial, commercial, or service sector, large-scale automated output shall contribute a standardized planetary dividend.</li>
-          <li><strong>Section 4.3 — Reinvestment in Human Capability:</strong> Automation dividends route directly into universal technical trade education, community-owned utility infrastructure, and local economic stability.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- ARTICLE V -->
-  <div class="wt-card">
-    <h3 class="wt-headline">ARTICLE V: Sovereign Autonomy & Direct Citizen Ratification</h3>
-    <p class="wt-quickread">Locks in national independence and eliminates superpower vetoes. Domestic laws remain untouched, while planetary enforcement requires a verifiable Double Majority of both participating nations and the global population.</p>
-    <button class="wt-acc-btn" onclick="toggleAccordion(this)">
-      <span class="wt-btn-label">+ Read Full Policy Architecture</span>
-      <span>▼</span>
-    </button>
-    <div class="wt-acc-panel">
-      <div class="wt-policy-body">
-        <ul>
-          <li><strong>Section 5.1 — Absolute Domestic Jurisdiction:</strong> Participating nations and local communities retain 100% authority over <strong>all internal affairs—including, without limitation:</strong> domestic legislation, constitutional rights, courts, taxation, cultural heritage, and local commerce—so long as they do not violate Articles I through IV by externalizing aggression or biosphere ruin beyond their borders.</li>
-          <li><strong>Section 5.2 — Abolition of Unilateral Vetoes:</strong> No single nation, military bloc, or security council holds veto power over the enforcement of planetary restitution or biosphere protection.</li>
-          <li><strong>Section 5.3 — Double-Majority Ratification:</strong> Constitutional amendments and binding enforcement mechanisms require transparent, verifiable ratification by a <strong>Double Majority</strong>: both a majority of participating sovereign states and a direct majority of the global human population.</li>
-          <li><strong>Section 5.4 — Anti-Circumvention Clause (Interpretive Standard):</strong> No provision of this Constitution may be narrowly construed, evaded through shell entities, proxy forces, or unenumerated technologies, or bypassed via semantic omission. Any unlisted weapon, infrastructure category, command title, or corporate structure that fulfills the functional role described in Articles I–V is fully bound by this Charter.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<script>
-  function toggleAccordion(btn) {
-    const panel = btn.nextElementSibling;
-    const label = btn.querySelector('.wt-btn-label');
-    const isOpen = btn.classList.contains('active');
-
-    if (isOpen) {
-      btn.classList.remove('active');
-      panel.style.maxHeight = null;
-      label.textContent = '+ Read Full Policy Architecture';
-    } else {
-      btn.classList.add('active');
-      panel.style.maxHeight = panel.scrollHeight + 'px';
-      label.textContent = '− Hide Full Policy Architecture';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World Treaty for Earth | The Constitution for Earth</title>
+  <style>
+    :root {
+      --bg-dark: #070b14;
+      --bg-panel: #0f172a;
+      --card-bg: #1e293b;
+      --border-col: #334155;
+      --accent-blue: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.2);
+      --text-main: #f8fafc;
+      --text-muted: #cbd5e1;
     }
-  }
 
-  let allExpanded = false;
-  function toggleAllArticles() {
-    const buttons = document.querySelectorAll('.wt-acc-btn');
-    const masterBtn = document.getElementById('wtToggleAll');
-    allExpanded = !allExpanded;
+    * {
+      box-sizing: border-box;
+    }
 
-    buttons.forEach(btn => {
-      const panel = btn.nextElementSibling;
-      const label = btn.querySelector('.wt-btn-label');
-      if (allExpanded) {
-        btn.classList.add('active');
-        panel.style.maxHeight = panel.scrollHeight + 'px';
-        label.textContent = '− Hide Full Policy Architecture';
-      } else {
-        btn.classList.remove('active');
-        panel.style.maxHeight = null;
-        label.textContent = '+ Read Full Policy Architecture';
-      }
-    });
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
 
-    masterBtn.textContent = allExpanded ? '− Collapse All Articles' : '+ Expand All Articles';
-  }
-</script>
+    /* TOP NAVIGATION BAR */
+    .wt-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-col);
+      padding: 0.85rem 1.5rem;
+    }
+    .wt-nav-inner {
+      max-width: 980px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .wt-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 900;
+      font-size: 1.2rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .wt-brand-globe {
+      font-size: 1.5rem;
+    }
+    .wt-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .wt-nav-btn {
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 0.45rem 0.9rem;
+      border-radius: 6px;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .wt-nav-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+    .wt-btn-ig {
+      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: #ffffff;
+    }
+    .wt-btn-fb {
+      background: #1877f2;
+      color: #ffffff;
+    }
+
+    /* HERO HEADER */
+    .wt-hero {
+      position: relative;
+      background: radial-gradient(circle at 50% 20%, #1e293b 0%, #070b14 75%);
+      border-bottom: 1px solid var(--border-col);
+      padding: 4rem 1.5rem 3rem;
+      text-align: center;
+    }
+    .wt-hero-inner {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .wt-eyebrow {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--accent-blue);
+      border: 1px solid var(--accent-blue);
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.3rem 0.85rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    .wt-hero h1 {
+      margin: 0 0 1rem 0;
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: #ffffff;
+    }
+    .wt-hero-tagline {
+      font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+      color: var(--text-muted);
+      margin: 0 auto 2rem auto;
+      max-width: 680px;
+    }
+    .wt-hero-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+    .wt-cta-primary {
+      background: var(--accent-blue);
+      color: #070b14;
+      font-weight: 800;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+    .wt-cta-primary:hover {
+      background: #7dd3fc;
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    /* MAIN CONTAINER */
+    .wt-app-container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+
+    /* TOP SOVEREIGNTY BANNER */
+    .wt-sovereignty-banner {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border: 2px solid var(--accent-blue);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 30px var(--accent-glow);
+    }
+    .wt-sovereignty-alert {
+      margin: 0 0 0.75rem 0;
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--accent-blue);
+      letter-spacing: 0.03em;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+    .wt-sovereignty-sub {
+      margin: 0;
+      font-size: 0.96rem;
+      color: var(--text-muted);
+    }
+
+    /* PREAMBLE & CONTROLS */
+    .wt-header-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      border-left: 4px solid var(--accent-blue);
+      padding: 1.25rem 1.5rem;
+      background: var(--card-bg);
+      border-radius: 0 10px 10px 0;
+      margin-bottom: 1.75rem;
+    }
+    .wt-header-text {
+      flex: 1 1 500px;
+    }
+    .wt-header-text h2 {
+      margin: 0 0 0.4rem 0;
+      font-size: 1.4rem;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .wt-header-text p {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.96rem;
+    }
+    .wt-toggle-all-btn {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent-blue);
+      border: 1px solid var(--accent-blue);
+      padding: 0.6rem 1.1rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .wt-toggle-all-btn:hover {
+      background: var(--accent-blue);
+      color: #070b14;
+    }
+
+    /* ARTICLE ACCORDION CARDS */
+    .wt-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-col);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .
 
