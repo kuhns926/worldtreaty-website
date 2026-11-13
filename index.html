@@ -1,966 +1,497 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>World Treaty for Earth | The Constitution for Earth</title>
-    <style>
-        /* CSS Variables for the "Glass Ledger" Theme */
-        :root {
-            --slate-900: #0f172a;
-            --slate-800: #1e293b;
-            --slate-100: #f1f5f9;
-            --steel-blue: #3b82f6;
-            --steel-blue-hover: #2563eb;
-            --steel-glow: rgba(59, 130, 246, 0.45);
-            --text-main: #334155;
-            --text-muted: #64748b;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            line-height: 1.7;
-            color: var(--text-main);
-            background-color: var(--slate-100);
-            overflow-x: hidden;
-        }
-
-        /* Top Scroll Progress Bar */
-        #progress-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: rgba(15, 23, 42, 0.8);
-            z-index: 200;
-        }
-
-        #progress-bar {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd);
-            box-shadow: 0 0 10px var(--steel-blue);
-            transition: width 0.1s ease-out;
-        }
-
-        /* Centered Sticky Navigation */
-        nav {
-            background-color: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(8px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            padding: 0.95rem 2rem 0.85rem 2rem; 
-            box-shadow: 0 4px 12px -1px rgba(0, 0, 0, 0.25);
-            border-bottom: 1px solid #1e293b;
-        }
-
-        .nav-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .nav-links {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1.75rem;
-        }
-
-        .nav-links a {
-            color: var(--slate-100);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
-            transition: color 0.2s, transform 0.2s;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0%;
-            height: 2px;
-            background-color: var(--steel-blue);
-            transition: width 0.25s ease;
-        }
-
-        .nav-links a:hover {
-            color: #60a5fa;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Header with Blueprint Grid & Animated Logo Glow */
-        header {
-            background-color: var(--slate-900);
-            background-image: 
-                radial-gradient(circle at 50% 35%, rgba(59, 130, 246, 0.18) 0%, rgba(15, 23, 42, 0.95) 70%),
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 100% 100%, 32px 32px, 32px 32px;
-            color: white;
-            padding: 4.5rem 2rem 5rem 2rem;
-            text-align: center;
-            border-bottom: 4px solid var(--steel-blue);
-            position: relative;
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% {
-                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 15px 2px rgba(59, 130, 246, 0.35);
-            }
-            50% {
-                box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.7), 0 0 28px 6px rgba(59, 130, 246, 0.65);
-            }
-        }
-
-        .hero-logo-link {
-            display: inline-block;
-            margin-bottom: 1.75rem;
-            transition: transform 0.3s ease;
-        }
-
-        .hero-logo-link:hover {
-            transform: scale(1.04);
-        }
-
-        .hero-logo {
-            height: 155px;
-            width: auto;
-            border-radius: 12px;
-            display: block;
-            margin: 0 auto;
-            border: 2px solid rgba(96, 165, 250, 0.5);
-            animation: pulseGlow 4s infinite ease-in-out;
-        }
-
-        header h1 {
-            font-size: 3.35rem;
-            margin-bottom: 1.25rem;
-            letter-spacing: -1px;
-            line-height: 1.15;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-        }
-
-        .hero-label {
-            display: inline-block;
-            text-transform: uppercase;
-            letter-spacing: 2.5px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: #93c5fd;
-            background: rgba(59, 130, 246, 0.15);
-            padding: 0.3rem 0.9rem;
-            border-radius: 999px;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            margin-bottom: 0.85rem;
-        }
-
-        .hero-mission {
-            font-size: 2.35rem;
-            font-weight: 800;
-            color: #60a5fa;
-            letter-spacing: -0.5px;
-            margin-bottom: 0.75rem;
-            line-height: 1.25;
-        }
-
-        .hero-sub {
-            font-size: 1.4rem;
-            max-width: 800px;
-            margin: 0 auto;
-            color: var(--slate-100);
-            font-weight: 400;
-        }
-
-        .hero-sub strong {
-            color: white;
-            font-weight: 700;
-            border-bottom: 2px solid var(--steel-blue);
-        }
-
-        /* Quick Stat Bar under Header */
-        .stat-banner {
-            background: var(--slate-800);
-            color: white;
-            border-bottom: 1px solid #334155;
-            padding: 1.25rem 2rem;
-        }
-
-        .stat-grid {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            text-align: center;
-        }
-
-        .stat-item {
-            padding: 0.5rem;
-        }
-
-        .stat-num {
-            font-size: 1.35rem;
-            font-weight: 800;
-            color: #60a5fa;
-            display: block;
-            line-height: 1.2;
-        }
-
-        .stat-desc {
-            font-size: 0.8rem;
-            color: #cbd5e1;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Main Content Areas & Scroll Reveal Animation */
-        main {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 3.5rem 2rem;
-        }
-
-        section {
-            margin-bottom: 4rem;
-            background: white;
-            padding: 3rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
-            opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.65s ease-out, transform 0.65s ease-out;
-        }
-
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        h2 {
-            color: var(--slate-900);
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--slate-100);
-            padding-bottom: 0.6rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        h2 svg {
-            color: var(--steel-blue);
-            flex-shrink: 0;
-        }
-
-        h3 {
-            color: var(--slate-800);
-            font-size: 1.25rem;
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-        }
-
-        p {
-            margin-bottom: 1.25rem;
-        }
-
-        .highlight-box {
-            background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
-            border-left: 5px solid var(--steel-blue);
-            padding: 2rem;
-            margin: 2rem 0;
-            border-radius: 0 8px 8px 0;
-            box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.12);
-        }
-
-        .highlight-box p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Interactive Cards Grid for Article I (Five Guarantees) */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.75rem;
-        }
-
-        .feature-card {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-top: 4px solid var(--steel-blue);
-            border-radius: 8px;
-            padding: 1.75rem 1.5rem;
-            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 20px -5px rgba(15, 23, 42, 0.1);
-            border-color: var(--steel-blue);
-            background: white;
-        }
-
-        .card-badge {
-            display: inline-block;
-            font-size: 0.75rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--steel-blue);
-            background: rgba(59, 130, 246, 0.12);
-            padding: 0.25rem 0.65rem;
-            border-radius: 4px;
-            margin-bottom: 0.75rem;
-        }
-
-        .feature-card h3 {
-            margin-top: 0;
-            font-size: 1.2rem;
-            color: var(--slate-900);
-        }
-
-        .feature-card p {
-            font-size: 0.95rem;
-            margin-bottom: 0;
-        }
-
-        /* Call To Action Button */
-        .cta-container {
-            text-align: center;
-            margin-top: 2.5rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--slate-100);
-        }
-
-        .pledge-btn {
-            background: linear-gradient(135deg, var(--steel-blue) 0%, var(--steel-blue-hover) 100%);
-            color: white;
-            padding: 1.1rem 2.75rem;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 6px 15px -3px rgba(59, 130, 246, 0.45);
-        }
-
-        .pledge-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px -3px rgba(59, 130, 246, 0.6);
-        }
-
-        /* Interactive Accordions for Constitution Articles & FAQ */
-        details {
-            background-color: var(--slate-100);
-            margin-bottom: 0.85rem;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid #e2e8f0;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-
-        details:hover {
-            border-color: #cbd5e1;
-        }
-
-        details[open] {
-            border-color: var(--steel-blue);
-            border-left: 4px solid var(--steel-blue);
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
-        }
-
-        summary {
-            padding: 1.2rem 3rem 1.2rem 1.25rem;
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--slate-900);
-            background-color: #f1f5f9;
-            list-style: none;
-            position: relative;
-            transition: background-color 0.2s, color 0.2s;
-        }
-
-        summary::-webkit-details-marker {
-            display: none;
-        }
-
-        /* Animated + / x Icon on Accordions */
-        summary::after {
-            content: '+';
-            position: absolute;
-            right: 1.25rem;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--steel-blue);
-            transition: transform 0.25s ease;
-            line-height: 1;
-        }
-
-        details[open] summary::after {
-            transform: translateY(-50%) rotate(45deg);
-        }
-
-        summary:hover {
-            background-color: #e2e8f0;
-        }
-
-        details[open] summary {
-            background-color: #eff6ff;
-            color: var(--steel-blue-hover);
-            border-bottom: 1px solid #dbeafe;
-        }
-
-        @keyframes fadeDown {
-            from { opacity: 0; transform: translateY(-6px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        details[open] .details-content {
-            animation: fadeDown 0.25s ease-out;
-        }
-
-        details .details-content {
-            padding: 1.5rem;
-            background-color: white;
-        }
-
-        ul {
-            margin-left: 1.5rem;
-            margin-bottom: 1.25rem;
-        }
-
-        li {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--slate-900);
-            color: white;
-            text-align: center;
-            padding: 3.5rem 2rem;
-            margin-top: 2rem;
-            border-top: 3px solid var(--steel-blue);
-        }
-
-        .footer-links {
-            font-size: 0.95rem;
-            color: #cbd5e1;
-            margin-top: 1.5rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1.25rem;
-            flex-wrap: wrap;
-        }
-
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: #60a5fa;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.2s, transform 0.2s;
-        }
-
-        .social-link:hover {
-            color: #ffffff;
-            transform: translateY(-1px);
-        }
-
-        .divider {
-            color: #475569;
-        }
-
-        @media (max-width: 768px) {
-            .stat-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (max-width: 640px) {
-            .nav-links { gap: 0.9rem; }
-            .nav-links a { font-size: 0.78rem; }
-            .hero-logo { height: 120px; }
-            header h1 { font-size: 2.25rem; }
-            .hero-mission { font-size: 1.65rem; }
-            .hero-sub { font-size: 1.15rem; }
-            .stat-grid { grid-template-columns: 1fr; gap: 0.5rem; }
-            section { padding: 1.75rem; }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Top Reading Progress Bar -->
-    <div id="progress-container">
-        <div id="progress-bar"></div>
+<style>
+  :root {
+    --bg-dark: #0b1120;
+    --card-bg: #1e293b;
+    --border-col: #334155;
+    --accent-blue: #38bdf8;
+    --accent-glow: rgba(56, 189, 248, 0.18);
+    --text-main: #f8fafc;
+    --text-muted: #cbd5e1;
+  }
+
+  .wt-app-container {
+    max-width: 960px;
+    margin: 0 auto;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--text-main);
+    background: var(--bg-dark);
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+  }
+
+  /* TOP SOVEREIGNTY BANNER */
+  .wt-sovereignty-banner {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 2px solid var(--accent-blue);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.75rem;
+    box-shadow: 0 8px 30px var(--accent-glow);
+  }
+  .wt-sovereignty-alert {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.15rem;
+    font-weight: 900;
+    color: var(--accent-blue);
+    letter-spacing: 0.03em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+  .wt-sovereignty-sub {
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  /* PREAMBLE & CONTROLS */
+  .wt-header-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    border-left: 4px solid var(--accent-blue);
+    padding: 1.25rem 1.5rem;
+    background: var(--card-bg);
+    border-radius: 0 10px 10px 0;
+    margin-bottom: 1.75rem;
+  }
+  .wt-header-text {
+    flex: 1 1 500px;
+  }
+  .wt-header-text h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .wt-header-text p {
+    margin: 0;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+  .wt-toggle-all-btn {
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-blue);
+    border: 1px solid var(--accent-blue);
+    padding: 0.6rem 1.1rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .wt-toggle-all-btn:hover {
+    background: var(--accent-blue);
+    color: #0b1120;
+  }
+
+  /* ARTICLE CARDS */
+  .wt-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-col);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .wt-card:hover {
+    border-color: var(--accent-blue);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  }
+  .wt-headline {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #ffffff;
+  }
+  .wt-quickread {
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--text-muted);
+  }
+
+  /* JS ACCORDION BUTTON & DRAWER */
+  .wt-acc-btn {
+    width: 100%;
+    text-align: left;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--border-col);
+    color: var(--accent-blue);
+    padding: 0.65rem 1rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.2s ease;
+  }
+  .wt-acc-btn:hover {
+    background: rgba(56, 189, 248, 0.12);
+  }
+  .wt-acc-btn.active {
+    color: #fca5a5;
+    border-color: rgba(248, 113, 113, 0.4);
+  }
+  .wt-acc-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease-out;
+  }
+  .wt-policy-body {
+    padding-top: 1rem;
+    margin-top: 0.75rem;
+    border-top: 1px dashed var(--border-col);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: #e2e8f0;
+  }
+  .wt-policy-body ul {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+  .wt-policy-body li {
+    margin-bottom: 0.85rem;
+  }
+
+  /* CLICKABLE MEDIA & SOCIAL SHOWCASE GRID */
+  .wt-media-section {
+    margin: 2.5rem 0;
+    padding: 1.75rem;
+    background: linear-gradient(180deg, #131c31 0%, #0f172a 100%);
+    border: 1px solid var(--border-col);
+    border-radius: 14px;
+  }
+  .wt-media-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  .wt-media-header h3 {
+    margin: 0 0 0.4rem 0;
+    font-size: 1.35rem;
+    color: #ffffff;
+  }
+  .wt-media-header p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+  }
+  .wt-media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+  .wt-media-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-col);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+  }
+  .wt-media-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-blue);
+  }
+  .wt-media-thumb-link {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 5;
+    background: #090d16;
+    overflow: hidden;
+    text-decoration: none;
+  }
+  .wt-media-thumb-link img,
+  .wt-media-thumb-link video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+  }
+  .wt-media-card:hover .wt-media-thumb-link img,
+  .wt-media-card:hover .wt-media-thumb-link video {
+    transform: scale(1.04);
+  }
+  .wt-play-badge {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: rgba(15, 23, 42, 0.85);
+    color: #ffffff;
+    padding: 0.35rem 0.7rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border: 1px solid var(--accent-blue);
+  }
+  .wt-media-info {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+  }
+  .wt-media-title {
+    margin: 0 0 0.75rem 0;
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.4;
+  }
+  .wt-social-btn-group {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .wt-social-btn {
+    flex: 1;
+    text-align: center;
+    padding: 0.5rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+  .wt-social-btn:hover {
+    opacity: 0.88;
+  }
+  .wt-btn-ig {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: #ffffff;
+  }
+  .wt-btn-fb {
+    background: #1877f2;
+    color: #ffffff;
+  }
+</style>
+
+<div class="wt-app-container">
+
+  <!-- TOP SOVEREIGNTY GUARANTEE BANNER -->
+  <div class="wt-sovereignty-banner">
+    <p class="wt-sovereignty-alert">
+      ALL INDIVIDUAL GOVERNMENTS RETAIN COMPLETE CONTROL OF THEIR OWN GOVERNANCE—BARRING DIRECT VIOLATIONS OF THE CONSTITUTION FOR EARTH.
+    </p>
+    <p class="wt-sovereignty-sub">
+      This Charter does not create a global super-state, erase borders, or interfere in domestic laws, constitutional rights, tax policies, or local cultures. Nations govern themselves with 100% autonomy—bounded only by one planetary rule: <strong>no regime, oligarch, or military command has the right to initiate cross-border destruction or externalize catastrophic ruin onto their neighbors or the shared planetary atmosphere and biosphere.</strong>
+    </p>
+  </div>
+
+  <!-- PREAMBLE & JS EXPAND ALL BUTTON -->
+  <div class="wt-header-bar">
+    <div class="wt-header-text">
+      <h2>The Constitution for Earth</h2>
+      <p><strong>The Planetary Floor of Law:</strong> Recognizing that Earth’s atmosphere, oceans, and civil infrastructure form an indivisible life-support system, we establish this binding framework of restitution, stewardship, and human survival.</p>
+    </div>
+    <button class="wt-toggle-all-btn" id="wtToggleAll" onclick="toggleAllArticles()">
+      + Expand All Articles
+    </button>
+  </div>
+
+  <!-- ARTICLE I -->
+  <div class="wt-card">
+    <h3 class="wt-headline">ARTICLE I: The Conflict Liability & Restitution Mandate (CLRT)</h3>
+    <p class="wt-quickread">Makes war financially fatal to those who orchestrate it. Aggressors pay 100% of reconstruction costs for <strong>all civilian infrastructure and essential life systems</strong>—seizing the wealth of political architects, oligarchs, and top military command first, backed by a mandatory 10% national GDP levy until every affected community is made whole.</p>
+    <button class="wt-acc-btn" onclick="toggleAccordion(this)">
+      <span class="wt-btn-label">+ Read Full Policy Architecture</span>
+      <span>▼</span>
+    </button>
+    <div class="wt-acc-panel">
+      <div class="wt-policy-body">
+        <ul>
+          <li><strong>Section 1.1 — Comprehensive Liability for Civilian Destruction:</strong> Any state, regime, or armed faction that initiates kinetic, cyber, or asymmetric aggression is strictly liable for 100% of verified physical, economic, and ecological reconstruction costs. Covered damages encompass <strong>all civilian life-support, municipal, residential, and economic systems—including, without limitation:</strong> homes, hospitals, medical facilities, electrical grids, water treatment and distribution plants, agricultural land, food supply chains, bridges, transportation networks, schools, and communications infrastructure.</li>
+          <li><strong>Section 1.2 — Tier 1 Liability (The Architects & Strategic Command):</strong> Primary enforcement immediately freezes, seizes, and liquidates 100% of the personal, offshore, beneficial, and corporate wealth of all individuals who hold executive, legislative, financial, or strategic authority over the planning, authorization, or execution of aggression. This encompasses <strong>all top-tier decision-makers—including, without limitation:</strong> Heads of State, Cabinet Ministers, Oligarchic Financiers, Defense Contractors, and Strategic High Command (Ministers of Defense, Chiefs of Staff, and Flag/General Officers). Standard enlisted personnel, field officers without strategic war-planning authority, and everyday civilians remain 100% exempt from personal asset seizure.</li>
+          <li><strong>Section 1.3 — Tier 2 Sovereign Backstop (The 10% GDP Rule):</strong> Where Tier 1 seizures cannot satisfy total verified damages—or where leadership holds insufficient personal capital—the attacking state’s economy is assessed an automatic <strong>Sovereign Restitution Levy capped at 10% of annual Gross Domestic Product (GDP)</strong>. Collected across all international trade clearinghouses, sovereign wealth instruments, and commodity exports (including, without limitation, oil, gas, minerals, and manufactured goods), this levy remains active year-over-year until 100% of the restitution debt is satisfied.</li>
+          <li><strong>Section 1.4 — Zero-Interference Escrow Routing:</strong> All restitution funds bypass political intermediaries and route directly into audited reconstruction escrow accounts dedicated exclusively to rehabilitating damaged communities and essential systems.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTICLE II (UPDATED WITH DOMESTIC ATMOSPHERE & BIOSPHERE CLAUSE) -->
+  <div class="wt-card">
+    <h3 class="wt-headline">ARTICLE II: Planetary Biosphere & Climate Accountability</h3>
+    <p class="wt-quickread">Abolishes all military, industrial, and domestic pollution loopholes. Because Earth shares a single atmosphere and ocean system, no regime may poison its own skies or waters to the detriment of the planet—every missile fired or ecosystem ruined triggers an automatic global remediation levy.</p>
+    <button class="wt-acc-btn" onclick="toggleAccordion(this)">
+      <span class="wt-btn-label">+ Read Full Policy Architecture</span>
+      <span>▼</span>
+    </button>
+    <div class="wt-acc-panel">
+      <div class="wt-policy-body">
+        <ul>
+          <li><strong>Section 2.1 — Total Elimination of Sovereign & Military Exemptions:</strong> All military, defense, and industrial exemptions from environmental and emissions reporting are permanently abolished. Every state and corporate entity is strictly accountable for <strong>all forms of biosphere degradation—including, without limitation:</strong> greenhouse gas emissions, stratospheric soot, heavy metal fallout, chemical runoff, radiological contamination, and marine pollution.</li>
+          <li><strong>Section 2.2 — Transboundary Liability for Domestic Atmosphere & Ecological Ruin:</strong> Because the planetary atmosphere, stratosphere, hydrologic cycle, and oceans form a single, borderless life-support system, <strong>no state may claim domestic jurisdiction to justify catastrophic environmental destruction within its own borders that degrades the shared global biosphere.</strong> Any severe domestic atmospheric pollution, mass burning of fossil reserves or carbon sinks, or unmitigated toxic release within national territory that measurably impacts global climate stability or transboundary ecosystems is strictly subject to planetary restitution levies.</li>
+          <li><strong>Section 2.3 — Automated Ecological Restitution & Remediation:</strong> Every kinetic strike, munitions detonation, domestic or cross-border scorched-earth operation, or unmitigated industrial discharge carries a mandatory financial assessment calculated via independent planetary telemetry, routing 100% of funds into closed-loop atmospheric, soil, and ocean restoration.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLICKABLE VISUAL MEDIA SHOWCASE (LINKS STRAIGHT TO IG & FB) -->
+  <div class="wt-media-section">
+    <div class="wt-media-header">
+      <h3>Watch & Share the Mission</h3>
+      <p>Click any video or briefing below to join the conversation on Instagram and Facebook.</p>
     </div>
 
-    <!-- Centered Sticky Navigation Bar -->
-    <nav>
-        <div class="nav-container">
-            <div class="nav-links">
-                <a href="#mission">Mission</a>
-                <a href="#preamble">Preamble</a>
-                <a href="#article-1">Article I: Rights</a>
-                <a href="#article-2">Article II: Governance</a>
-                <a href="#article-3">Article III: Treasury</a>
-                <a href="#article-4">Article IV: Peace Law</a>
-                <a href="#faq">FAQ</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Header with Blueprint Grid & Glowing Logo -->
-    <header>
-        <a href="#" class="hero-logo-link">
-            <img src="wte-logo-3.jpg" alt="World Treaty for Earth Logo" class="hero-logo">
+    <div class="wt-media-grid">
+      <!-- MEDIA CARD 1: REEL VIDEO -->
+      <div class="wt-media-card">
+        <a href="https://www.instagram.com/treatyforearth/" target="_blank" rel="noopener" class="wt-media-thumb-link">
+          <!-- Replace src with your hosted video file or thumbnail image -->
+          <video autoplay loop muted playsinline poster="your-thumbnail-1.jpg">
+            <source src="your-reel-video.mp4" type="video/mp4">
+          </video>
+          <span class="wt-play-badge">▶ Watch Reel</span>
         </a>
-        <h1>The Constitution for Earth</h1>
-        <div class="hero-label">World Treaty for Earth</div>
-        <div class="hero-mission">Making War Too Costly to Wage</div>
-        <p class="hero-sub">Building Infrastructure &amp; Peace, <strong>Point Blank.</strong></p>
-    </header>
-
-    <!-- Quick Visual Key Metrics Banner -->
-    <div class="stat-banner">
-        <div class="stat-grid">
-            <div class="stat-item">
-                <span class="stat-num">5 Guarantees</span>
-                <span class="stat-desc">Universal Material Floor</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-num">51% Dual-Lock</span>
-                <span class="stat-desc">States + Global Population</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-num">0% to Politicians</span>
-                <span class="stat-desc">Direct-to-Worker Routing</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-num">100% Forfeiture</span>
-                <span class="stat-desc">Zero Refunds for Warmongers</span>
-            </div>
+        <div class="wt-media-info">
+          <p class="wt-media-title">Why Do Leaders Destroy Critical Infrastructure Without Consequence?</p>
+          <div class="wt-social-btn-group">
+            <a href="https://www.instagram.com/treatyforearth/" target="_blank" rel="noopener" class="wt-social-btn wt-btn-ig">Instagram</a>
+            <a href="https://www.facebook.com/treatyforearth" target="_blank" rel="noopener" class="wt-social-btn wt-btn-fb">Facebook</a>
+          </div>
         </div>
+      </div>
+
+      <!-- MEDIA CARD 2: CAROUSEL / IMAGE -->
+      <div class="wt-media-card">
+        <a href="https://www.instagram.com/treatyforearth/" target="_blank" rel="noopener" class="wt-media-thumb-link">
+          <!-- Replace src with your carousel cover image -->
+          <img src="your-carousel-cover-1.jpg" alt="10% GDP Rule & Accountability">
+          <span class="wt-play-badge">📖 View Briefing</span>
+        </a>
+        <div class="wt-media-info">
+          <p class="wt-media-title">The Two-Tier Restitution Waterfall: Making War Financially Fatal</p>
+          <div class="wt-social-btn-group">
+            <a href="https://www.instagram.com/treatyforearth/" target="_blank" rel="noopener" class="wt-social-btn wt-btn-ig">Instagram</a>
+            <a href="https://www.facebook.com/treatyforearth" target="_blank" rel="noopener" class="wt-social-btn wt-btn-fb">Facebook</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- MEDIA CARD 3: CLIMATE & BIOSPHERE -->
+      <div class="wt-media-card">
+        <a href="https://www.instagram.com/treatyforearth/" target="_blank" rel="noopener" class="wt-media-thumb-link">
+          <!-- Replace src with your climate post cover image -->
+          <img src="your-carousel-cover-2.jpg" alt="Closing the Military Climate Loophole">
+          <span class="wt-play-badge">🌍 View Post</span>
+        </a>
+        <div class="wt-media-info">
+          <p class="wt-media-title">Every Missile Fired Hits Our Atmosphere: Closing the Military Loophole</p>
+          <div class="wt-social-btn-group">
+            <a href="https://www.instagram.com/treatyforearth/" target="_blank" rel="noopener" class="wt-social-btn wt-btn-ig">Instagram</a>
+            <a href="https://www.facebook.com/treatyforearth" target="_blank" rel="noopener" class="wt-social-btn wt-btn-fb">Facebook</a>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <main>
-        <!-- MISSION & CONTEXT SECTION -->
-        <section id="mission"> 
-            <h2>
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
-                </svg>
-                A New Path Forward
-            </h2> 
-            
-            <p>The world is not at peace, and the current systems are clearly failing us. Earth needs new representation. For too long, humanity has kept a sledgehammer ready to crush an ant colony—holding the power of total destruction while hoping we never have to use it.</p> 
-            
-            <p>Ultimately, the tool is used for the wrong purpose. We need the right tool for the right job. We are proposing a planet that disincentivizes war and promotes peace through true strength.</p> 
+  <!-- ARTICLE III -->
+  <div class="wt-card">
+    <h3 class="wt-headline">ARTICLE III: The Sovereign Commons & Essential Infrastructure Standard</h3>
+    <p class="wt-quickread">Protects all foundational human survival systems—water, energy, shelter, sanitation, and food security—as inviolable rights. Mandates open-source, resilient engineering blueprints for global crisis recovery and reconstruction.</p>
+    <button class="wt-acc-btn" onclick="toggleAccordion(this)">
+      <span class="wt-btn-label">+ Read Full Policy Architecture</span>
+      <span>▼</span>
+    </button>
+    <div class="wt-acc-panel">
+      <div class="wt-policy-body">
+        <ul>
+          <li><strong>Section 3.1 — Inviolable Survival Rights:</strong> Access to the physical foundations of human life—<strong>including, without limitation, clean potable water, baseline electricity, durable shelter, sanitation, and food security</strong>—is recognized as an inviolable right protected against geopolitical weaponization, blockade, or predatory monopolization.</li>
+          <li><strong>Section 3.2 — Open-Source Civil Blueprints:</strong> Planetary reconstruction and municipal development prioritize standardized, modular, closed-loop civil engineering (including, without limitation, zero-liquid-discharge water desalination, decentralized renewable microgrids, durable modular housing, and resilient utility conduits) maintained as open-source public blueprints available to all communities.</li>
+          <li><strong>Section 3.3 — Resilient Reconstruction Mandate:</strong> All post-conflict and post-disaster rebuilding funded under Articles I and II must meet resilient, non-polluting, closed-loop engineering standards rather than reinstating vulnerable legacy infrastructure.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-            <div class="highlight-box">
-                <p><strong>We have no time to negotiate with all of the minuscule problems, but we can build a sustainable future.</strong> Make the war-mongers pay for the destruction they cause. If the "Humanity of Earth" comes together as one, we can ALL thrive. We can give every child a full-belly and a quality education. Roofs over everybody's heads. Good paying jobs and access to FREE Healthcare as a Human Right.</p>
-                
-                <p>We can police ourselves as one World. There is only one way to be at peace: <strong>we must make warfare too EXPENSIVE TO WAGE.</strong> If we attach huge economic consequences to every missile fired, the hate may relieve. When it comes to the pocketbook, people don't mess with it unless their finances are at stake personally. Only less than a handful of people actually start and end these wars. Well, let's make the choice to END ALL WARS. Make peace the only viable option.</p>
-            </div>
+  <!-- ARTICLE IV -->
+  <div class="wt-card">
+    <h3 class="wt-headline">ARTICLE IV: Human Labor & The Automation Dividend</h3>
+    <p class="wt-quickread">Protects working families and skilled trades across every sector. Guarantees fair-wage labor and apprenticeship pipelines for all planetary rebuilding while taxing large-scale autonomous production to support local communities.</p>
+    <button class="wt-acc-btn" onclick="toggleAccordion(this)">
+      <span class="wt-btn-label">+ Read Full Policy Architecture</span>
+      <span>▼</span>
+    </button>
+    <div class="wt-acc-panel">
+      <div class="wt-policy-body">
+        <ul>
+          <li><strong>Section 4.1 — Universal Protection of Skilled Labor:</strong> All reconstruction, infrastructure, and remediation projects governed by this Constitution mandate fair living wages, safe working conditions, recognized collective bargaining and union protections, and structured apprenticeship programs across <strong>all participating trades and labor sectors—including, without limitation:</strong> construction, pipefitting, electrical, fabrication, engineering, agriculture, logistics, and environmental remediation.</li>
+          <li><strong>Section 4.2 — The Industrial Automation Levy:</strong> As artificial intelligence, autonomous robotics, and algorithmic systems displace human labor across any industrial, commercial, or service sector, large-scale automated output shall contribute a standardized planetary dividend.</li>
+          <li><strong>Section 4.3 — Reinvestment in Human Capability:</strong> Automation dividends route directly into universal technical trade education, community-owned utility infrastructure, and local economic stability.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-            <p>Peace through binding diplomacy is the only way forward. No more ruin. No more turmoil. Why is this not already in effect? We as a human species need a new path that leads to prosperity. Save the planet and its people. Join the cause. It can be done. Unity is the only way to save humanity.</p> 
-        </section>
+  <!-- ARTICLE V -->
+  <div class="wt-card">
+    <h3 class="wt-headline">ARTICLE V: Sovereign Autonomy & Direct Citizen Ratification</h3>
+    <p class="wt-quickread">Locks in national independence and eliminates superpower vetoes. Domestic laws remain untouched, while planetary enforcement requires a verifiable Double Majority of both participating nations and the global population.</p>
+    <button class="wt-acc-btn" onclick="toggleAccordion(this)">
+      <span class="wt-btn-label">+ Read Full Policy Architecture</span>
+      <span>▼</span>
+    </button>
+    <div class="wt-acc-panel">
+      <div class="wt-policy-body">
+        <ul>
+          <li><strong>Section 5.1 — Absolute Domestic Jurisdiction:</strong> Participating nations and local communities retain 100% authority over <strong>all internal affairs—including, without limitation:</strong> domestic legislation, constitutional rights, courts, taxation, cultural heritage, and local commerce—so long as they do not violate Articles I through IV by externalizing aggression or biosphere ruin beyond their borders.</li>
+          <li><strong>Section 5.2 — Abolition of Unilateral Vetoes:</strong> No single nation, military bloc, or security council holds veto power over the enforcement of planetary restitution or biosphere protection.</li>
+          <li><strong>Section 5.3 — Double-Majority Ratification:</strong> Constitutional amendments and binding enforcement mechanisms require transparent, verifiable ratification by a <strong>Double Majority</strong>: both a majority of participating sovereign states and a direct majority of the global human population.</li>
+          <li><strong>Section 5.4 — Anti-Circumvention Clause (Interpretive Standard):</strong> No provision of this Constitution may be narrowly construed, evaded through shell entities, proxy forces, or unenumerated technologies, or bypassed via semantic omission. Any unlisted weapon, infrastructure category, command title, or corporate structure that fulfills the functional role described in Articles I–V is fully bound by this Charter.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-        <!-- PREAMBLE SECTION -->
-        <section id="preamble">
-            <h2>
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                    <polyline points="14 2 14 8 20 8"></polyline>
-                    <line x1="16" y1="13" x2="8" y2="13"></line>
-                    <line x1="16" y1="17" x2="8" y2="17"></line>
-                    <polyline points="10 9 9 9 8 9"></polyline>
-                </svg>
-                Preamble to the Constitution
-            </h2>
-            <p>For generations, the devastating costs of war and ecological ruin have been outsourced to the working class, while the architects of that destruction hide behind diplomatic immunity, state treasuries, and geopolitical vetoes. The world can no longer afford an international system where peace is treated as a political favor and accountability is lost in the machinery of corrupt governments. We stand at a necessary turning point in human history, rejecting the fragile, easily broken treaties of the past in favor of a new, undeniable gravity: an automated system of economic consequence where aggression guarantees permanent financial ruin for its architects, and the power to govern the global commons is permanently secured by the majority of humanity.</p>
-            
-            <p>This Constitution for Earth is a declaration of systemic reform, built not on empty diplomacy, but on the grounded reality of heavy industry, honest labor, and absolute liability. By permanently seizing the hidden wealth of those who ignite conflict and routing planetary resources entirely outside of state bureaucracies, we channel capital directly into the hands of the unionized workers, educators, medical practitioners, and aid organizations who physically repair the damage and care for the populace. This is our blueprint for a world where peace is mathematically enforced, where local sovereignty is respected without sacrificing the environment, and where the future is built—steel by steel, and foundation by foundation.</p>
+</div>
 
-            <div class="cta-container">
-                <a href="mailto:policy@worldtreaty.earth?subject=I Ratify The Constitution for Earth&body=I pledge my support for the World Treaty for Earth and the Constitution for Earth." class="pledge-btn">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                    </svg>
-                    Take the Pledge
-                </a>
-            </div>
-        </section>
+<script>
+  function toggleAccordion(btn) {
+    const panel = btn.nextElementSibling;
+    const label = btn.querySelector('.wt-btn-label');
+    const isOpen = btn.classList.contains('active');
 
-        <!-- ARTICLE I: THE UNIVERSAL MATERIAL FLOOR -->
-        <section id="article-1">
-            <h2>
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                </svg>
-                Article I: The Universal Material Floor
-            </h2>
-            <p>A constitution cannot run on abstract promises while citizens starve or freeze. Every person on Earth is guaranteed five foundational material rights, enforced through closed-loop municipal engineering, honest labor standards, and direct-to-service funding:</p>
+    if (isOpen) {
+      btn.classList.remove('active');
+      panel.style.maxHeight = null;
+      label.textContent = '+ Read Full Policy Architecture';
+    } else {
+      btn.classList.add('active');
+      panel.style.maxHeight = panel.scrollHeight + 'px';
+      label.textContent = '− Hide Full Policy Architecture';
+    }
+  }
 
-            <div class="cards-grid">
-                <div class="feature-card">
-                    <span class="card-badge">Section 1</span>
-                    <h3>No More Hunger &amp; Clean Water</h3>
-                    <p>Nutritious daily food and clean water are an absolute birthright. Every municipality maintains local agricultural reserves and universal school-meal programs so every child has a full belly. Commodity speculation on staple food and water is outlawed.</p>
-                </div>
+  let allExpanded = false;
+  function toggleAllArticles() {
+    const buttons = document.querySelectorAll('.wt-acc-btn');
+    const masterBtn = document.getElementById('wtToggleAll');
+    allExpanded = !allExpanded;
 
-                <div class="feature-card">
-                    <span class="card-badge">Section 2</span>
-                    <h3>Quality Education &amp; Trade Mastery</h3>
-                    <p>Free, world-class public education from early childhood through university degrees and union trade apprenticeships—balancing sciences and civic literacy with hands-on mechanical, agricultural, and industrial trades, free of student debt traps.</p>
-                </div>
+    buttons.forEach(btn => {
+      const panel = btn.nextElementSibling;
+      const label = btn.querySelector('.wt-btn-label');
+      if (allExpanded) {
+        btn.classList.add('active');
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+        label.textContent = '− Hide Full Policy Architecture';
+      } else {
+        btn.classList.remove('active');
+        panel.style.maxHeight = null;
+        label.textContent = '+ Read Full Policy Architecture';
+      }
+    });
 
-                <div class="feature-card">
-                    <span class="card-badge">Section 3</span>
-                    <h3>Affordable Housing &amp; Utilities</h3>
-                    <p>Every person is guaranteed a safe roof over their head and uninterrupted water, sanitation, heating/cooling, and electricity at a capped fraction of income, utilizing modular construction and non-profit closed-loop utility microgrids.</p>
-                </div>
-
-                <div class="feature-card">
-                    <span class="card-badge">Section 4</span>
-                    <h3>Good-Paying Union Jobs</h3>
-                    <p>All infrastructure and rebuilding projects operate under prevailing union wages and the <strong>Hybrid Mentorship Model</strong>: 75% local workers hired from the community paired with 25% international journey-level tradespeople running active apprenticeships.</p>
-                </div>
-
-                <div class="feature-card">
-                    <span class="card-badge">Section 5</span>
-                    <h3>Healthcare as a Human Right</h3>
-                    <p>Full medical, dental, mental health, and preventative care provided free at the point of service. Funded directly to hospitals and clinics without middleman insurance monopolies, with publicly funded medicines placed under open licensing.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ARTICLE II: PLANETARY GOVERNANCE & CHECKS ON POWER -->
-        <section id="article-2">
-            <h2>
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="2" y1="12" x2="22" y2="12"></line>
-                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                </svg>
-                Article II: Planetary Governance &amp; Checks on Power
-            </h2>
-            <p>Centralized empires collapse into tyranny, while fractured states fall into gridlock and war. Article II establishes how humanity polices and governs itself as one world while strictly protecting local self-rule:</p>
-
-            <details>
-                <summary>Section 1: Strict Subsidiarity (Local Self-Rule)</summary>
-                <div class="details-content">
-                    <p><strong>The Boundary:</strong> Planetary governance is strictly limited to cross-border issues that no single town or nation can solve alone: stopping offensive wars, maintaining the Article I Material Floor, enforcing global trade fairness, and protecting the shared biosphere.</p>
-                    <p><strong>Local Sovereignty:</strong> Every town, region, and nation retains absolute authority over its own local laws, cultural traditions, policing, and municipal operations—provided they do not violate Article I human rights or export harm across borders.</p>
-                </div>
-            </details>
-
-            <details>
-                <summary>Section 2: The 51% Double-Majority (Dual-Lock Democracy)</summary>
-                <div class="details-content">
-                    <p><strong>The Tipping Point:</strong> Global initiatives, emergency responses, or war-liability penalties become binding law only when <strong>51% of participating sovereign nations</strong> vote in favor.</p>
-                    <p><strong>The Population Safeguard:</strong> To prevent a coalition of microstates from overriding the global consensus, passing votes require an absolute demographic mandate: the specific nations voting in favor must also possess a combined population of at least <strong>51% of the total human population on Earth</strong>. Unilateral superpower vetoes are abolished.</p>
-                </div>
-            </details>
-
-            <details>
-                <summary>Section 3: The Paired Compromise Legislative Rule</summary>
-                <div class="details-content">
-                    <p><strong>Ending Gridlock:</strong> Whenever the Planetary Assembly faces a divided policy dispute, legislation advances through a <strong>Paired Compromise Calendar</strong>. Competing factions must pair one priority measure from each side into a single, balanced, non-severable package with equal floor time and mandatory up-or-down voting—forcing practical problem-solving over partisan sabotage.</p>
-                </div>
-            </details>
-
-            <details>
-                <summary>Section 4: The Council of Labor &amp; Engineering</summary>
-                <div class="details-content">
-                    <p><strong>Builders Over Bureaucrats:</strong> Politicians and lawyers cannot be the sole authors of laws governing physical reality. All planetary infrastructure, utility, labor, and environmental standards must be co-ratified by a non-partisan <strong>Council of Labor &amp; Engineering</strong>—composed of elected journey-level tradespeople, engineers, agriculturalists, and medical practitioners.</p>
-                </div>
-            </details>
-        </section>
-
-        <!-- ARTICLE III: THE GLASS LEDGER & ZERO-STATE TREASURY -->
-        <section id="article-3">
-            <h2>
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                    <line x1="8" y1="21" x2="16" y2="21"></line>
-                    <line x1="12" y1="17" x2="12" y2="21"></line>
-                </svg>
-                Article III: The Glass Ledger &amp; Zero-State Treasury
-            </h2>
-            <p>To prevent corruption, political favoritism, and bureaucratic theft, all planetary funds are managed by an independent non-profit governed by participating nations—where representatives hold the power to trigger action, but pre-written mathematical rules control every dollar:</p>
-
-            <details>
-                <summary>Section 1: The Open-Source Glass Ledger (Absolute Transparency)</summary>
-                <div class="details-content">
-                    <p><strong>Real-Time Tracking:</strong> Every single financial transaction—whether peacetime infrastructure funding or seized wartime restitution—is tracked on an open-source, publicly viewable digital ledger.</p>
-                    <p><strong>Public Accountability:</strong> Any citizen worldwide can inspect a project and verify which contractor received a contract, the exact line-item material costs, and the precise hourly wages paid to the workforce on site.</p>
-                </div>
-            </details>
-
-            <details>
-                <summary>Section 2: The Non-Profit Council &amp; The "Trigger, Not Steer" Protocol</summary>
-                <div class="details-content">
-                    <p><strong>One Nation, One Representative:</strong> All funds are held in an independent, international non-profit—the <strong>Global Restitution &amp; Commons Trust</strong>. Every participating country appoints one single representative (whether their President, Prime Minister, or a chosen envoy) to sit on the Trust's Board of Governors, operating strictly on the <strong>51% Double-Majority</strong> vote.</p>
-                    <p><strong>The "Trigger, Not Steer" Firewall:</strong> The representatives vote to verify when a crisis or war-liability trigger has occurred and to authorize the macro-level release of funds. However, once triggered, <strong>strict, pre-programmed constitutional guidelines take over with zero input from any member representative</strong>:</p>
-                    <ul>
-                        <li><strong>Automatic Location Routing (No Political Favoritism):</strong> Representatives cannot choose which region gets funded or withhold money from rivals. Funds are routed automatically based on objective physical data—verified satellite infrastructure damage, utility grid loss, and displaced refugee headcounts.</li>
-                        <li><strong>Automatic Pricing (No Bribes or Cronyism):</strong> Representatives cannot pick contractors or negotiate prices. The Glass Ledger automatically awards contracts to the <strong>Middle Bid</strong> of at least three sealed union contractor bids.</li>
-                        <li><strong>Automatic Milestone Releases:</strong> Funds never pass through any representative's hands. Payouts release automatically from escrow directly to union payrolls, hospitals, and aid hubs only when physical engineering inspections confirm the work is completed on the ground.</li>
-                    </ul>
-                </div>
-            </details>
-
-            <details>
-                <summary>Section 3: The Zero-State Routing Protocol (0% to Government Treasuries)</summary>
-                <div class="details-content">
-                    <p><strong>The Firewall:</strong> Under no circumstances will any planetary commons funds, penalty money, or refugee fees be deposited into the treasury, central bank, or controlled accounts of any national or local government.</p>
-                    <p><strong>Direct-to-Service Endpoints:</strong> All funds are paid directly to operational providers:</p>
-                    <ul>
-                        <li><strong>For Construction &amp; Utilities:</strong> Directly to approved Union Contractors and local public utility boards on an itemized contract basis.</li>
-                        <li><strong>For Refugees &amp; Relief:</strong> Directly to verified aid organizations, food distribution hubs, and camp operators managing the crisis.</li>
-                        <li><strong>For Healthcare &amp; Schools:</strong> Directly to hospitals, clinics, medical trusts, and public trade and school districts.</li>
-                    </ul>
-                </div>
-            </details>
-
-            <details>
-                <summary>Section 4: The Three-Bid Middle Selection Rule</summary>
-                <div class="details-content">
-                    <p><strong>Honest Pricing:</strong> Every major construction and rebuilding contract requires a minimum of three competitive bids from qualified union contractors, with the system automatically selecting the <strong>middle bid</strong>. This prevents contractor corner-cutting (lowest bid) and price-gouging (highest bid).</p>
-                </div>
-            </details>
-
-            <details>
-                <summary>Section 5: The Anti-Debt Guarantee &amp; Peacetime Commons Dividend</summary>
-                <div class="details-content">
-                    <p><strong>Grants, Never Loans:</strong> All rebuilding and infrastructure deployments are upfront grants, never loans. Host nations and victim communities never owe a single penny, abolishing foreign debt-trap diplomacy.</p>
-                    <p><strong>Peacetime Funding &amp; Monetary Integrity:</strong> Central banks are prohibited from devaluing working wages via unbacked money-printing for war or bailouts. Peacetime baseline funding is drawn from a modest uniform levy on shared global commons—international financial clearinghouses, trans-oceanic shipping lanes, orbital spectrums, and raw multinational resource extraction.</p>
-                </div>
-            </details>
-
-            <details>
-                <summary>Section 6: The 100-Year Generational Maintenance Covenant</summary>
-                <div class="details-content">
-                    <p><strong>The 5% Endowment:</strong> Infrastructure is a permanent physical requirement. A mandatory 5% of all seized aggressor assets bypasses immediate construction costs and is placed into an irrevocable, localized <strong>Maintenance Endowment</strong>.</p>
-                    <p><strong>The 100-Year Guarantee:</strong> This trust is dedicated exclusively to funding ongoing operational training, local union apprenticeships, and physical maintenance of newly repaired utility grids, water systems, and habitats for a full century.</p>
-                </div>
-            </details>
-        </section>
-
-        <!-- ARTICLE IV: CONFLICT LIABILITY & PEACE ENFORCEMENT -->
-        <section id="article-4">
-            <h2>
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                </svg>
-                Article IV: Conflict Liability &amp; Peace Enforcement
-            </h2>
-            <p>Only a handful of people start and end wars, and they don't stop unless their own pocketbooks are at stake personally. Incorporating the full doctrine of the <strong>Conflict Liability &amp; Restitution Treaty (CLRT)</strong>, Article IV attaches catastrophic, irreversible economic consequences to every missile fired—making peace the only viable option:</p>
-            
-            <details>
-                <summary>Section 1: You Break It, You Buy It (Total Liability &amp; Human Cost)</summary>
-                <div class="details-content">
-                    <p><strong>Absolute Liability:</strong> When the 51% Double-Majority votes that a country has started an offensive war or caused catastrophic cross-border ecological ruin, that attacking country is officially in debt for 100% of the damage. Regardless of battlefield outcomes, the attacker must pay to fix every destroyed building, bridge, water pipe, power station, and natural habitat.</p>
-                    <p><strong>The Human Cost Ledger:</strong> The attacking country is billed a mandatory daily fee for every displaced refugee, routed directly to neighboring humanitarian networks, alongside full funding for long-term medical and rehabilitation trusts for injured civilians and veterans on both sides.</p>
-                </div>
-            </details>
-
-            <details>
-                <summary>Section 2: Targeting the Architects Only (Working-Class &amp; Military Shield)</summary>
-                <div class="details-content">
-                    <p><strong>The Sovereign Architects:</strong> Money is never extracted from everyday working people. The system strictly targets the top of the food chain—seizing and liquidating the foreign bank accounts, sovereign wealth funds, luxury estates, and corporate assets of the top-level political leaders, state-aligned oligarchs, and billionaires who authorize or finance the war.</p>
-                    <p><strong>The Military Exemption:</strong> This Constitution recognizes that militaries do not declare wars; politicians do. Career military personnel and battlefield commanders are strictly exempt from personal financial seizure.</p>
-                    <p><strong>The Civilian Shield &amp; 10% GDP Cap:</strong> Domestic funds for civilian food imports, medicine, and local pensions can never be touched, and total annual state-level extraction will never exceed 10% of the attacking country's GDP—defunding the ruling class's war machine, never the local hospitals.</p>
-                </div>
-            </details>
-
-            <details>
-                <summary>Section 3: The Eco-Tariff &amp; Contagion Deterrent</summary>
-                <div class="details-content">
-                    <p><strong>Global Trade Lockout:</strong> Compliant nations are legally required to freeze violating state reserves immediately. Any non-compliant aggressor—or any neutral nation attempting to launder aggressor wealth or supply offensive munitions—faces an automatic, unified <strong>Eco-Tariff</strong> across the 51% majority bloc, pricing their exports out of the global economy overnight.</p>
-                </div>
-            </details>
-
-            <details>
-                <summary>Section 4: Permanent Architect Forfeiture &amp; The Demilitarization Escrow</summary>
-                <div class="details-content">
-                    <p><strong>Zero Refunds for Warmongers:</strong> Personal and corporate wealth seized from the Sovereign Architects (politicians, cabinet officials, and state-aligned oligarchs) is <strong>permanently and irrevocably forfeited</strong> the moment an offensive war begins. Architects will never recover a single penny of seized assets, regardless of subsequent ceasefires or peace treaties.</p>
-                    <p><strong>Victim Restitution First:</strong> All seized capital is applied first to 100% of the victim nation's infrastructure rebuilding, refugee stipends, medical trusts, and the 100-Year Maintenance Covenant.</p>
-                    <p><strong>Returning Confiscated Elite Wealth to the Working Class:</strong> Any remaining frozen state reserves or excess liquidated oligarch wealth held in the <strong>Demilitarization Escrow</strong> is never returned to the attacking government or its elites. Instead, strictly contingent on verified demilitarization and peace, escrowed funds are routed via the Zero-State Protocol directly into the attacking nation's own working-class communities—funding union jobs, schools, healthcare, and peacetime utilities.</p>
-                    <p><strong>The Recidivism Penalty:</strong> If the attacking state breaks the peace and restarts hostilities, all Demilitarization Escrow funds are immediately redirected to the global rebuilding pool, and state-level restitution liability instantly doubles.</p>
-                </div>
-            </details>
-
-            <details>
-                <summary>Section 5: Unanchored Crisis Operations (Access &amp; Security)</summary>
-                <div class="details-content">
-                    <p><strong>Open Access:</strong> Member nations grant open operational border access to union rebuilding crews and aid workers during an active crisis. Rebuilding operations hire local workers and build the local economy, but remain strictly unanchored from the local government's political machinery.</p>
-                    <p><strong>Perimeter Security:</strong> Host nation militaries are required to provide external perimeter security for construction sites and humanitarian installations. If a host government attempts to seize equipment, harm personnel, or block access, project execution pauses immediately and Eco-Tariffs trigger until safety is restored.</p>
-                </div>
-            </details>
-        </section>
-
-        <!-- FAQ SECTION -->
-        <section id="faq">
-            <h2>
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                </svg>
-                Defensive FAQ: Anticipating Criticisms
-            </h2>
-            
-            <details>
-                <summary>Democracy &amp; Power Dynamics</summary>
-                <div class="details-content">
-                    <p><strong>Q: Won’t the 51% Double-Majority allow heavily populated countries like China and India to dictate rules for the rest of the world?</strong><br>
-                    A: No. That is precisely why the Double-Majority exists. While India and China have large populations, they represent only two state votes. To pass any measure, they would still need to convince over 90 other sovereign nations to vote in favor to meet the 51% state threshold. The dual-lock system physically prevents both the "Tyranny of the Populous" and the "Tyranny of Microstates."</p>
-                    
-                    <p><strong>Q: If every participating country appoints a political representative to the Non-Profit Trust, won't they play politics with who gets the rebuilding money?</strong><br>
-                    A: No, because of the "Trigger, Not Steer" Firewall (Article III, Section 2). National representatives only vote via the 51% Double-Majority to verify that a crisis or war-liability trigger has occurred. Once triggered, member representatives have zero input on how or where money is spent: pre-programmed formulas automatically route funds based on satellite damage telemetry, refugee headcounts, and the Three-Bid Middle Selection rule.</p>
-
-                    <p><strong>Q: What stops a coalition of 51% of nations from unfairly targeting and bankrupting a minority nation over political disagreements?</strong><br>
-                    A: Article IV penalties are strictly triggered by objective physical violations—specifically, offensive military aggression and catastrophic ecological destruction. It is not an instrument for ideological, cultural, or trade disputes. Furthermore, the 10% Macroeconomic Floor ensures that even under maximum penalties, a nation’s civilian economy cannot be collapsed.</p>
-
-                    <p><strong>Q: Superpowers with UN vetoes are never going to voluntarily sign this. How does the Constitution work if the biggest militaries refuse to participate?</strong><br>
-                    A: It does not ask for their permission; it leverages their economic reliance. Modern superpowers cannot survive without access to global consumer markets and international shipping lanes. If a 51% Double-Majority bloc ratifies the Constitution, it creates an unavoidable economic gravity well. A non-signatory superpower that launches an offensive war will instantly face the Eco-Tariff and permanent asset forfeiture across half the planet. They do not have to sign to be bound by the mathematical consequence of losing access to the global economy.</p>
-                </div>
-            </details>
-
-            <details>
-                <summary>Economic Enforcement &amp; Permanent Forfeiture</summary>
-                <div class="details-content">
-                    <p><strong>Q: If oligarchs permanently lose 100% of their seized wealth with no refunds, what incentive do they have to stop the war once it starts?</strong><br>
-                    A: First, the certainty of permanent, catastrophic personal bankruptcy deters them from firing the first missile at all. Second, once a war starts, Article IV Section 4 turns their own population and military against them: because any leftover liquidated oligarch wealth in the Demilitarization Escrow is routed directly into building civilian schools, hospitals, and union jobs for the attacking country's working class <em>only after hostilities stop and the state disarms</em>, the domestic population has a massive financial incentive to remove warmongering leaders and end the war immediately.</p>
-                    <p><strong>Q: Oligarchs hide wealth in shell companies, tax havens, and crypto. How can the system seize assets it cannot locate?</strong><br>
-                    A: The system operates at both the oligarchic and macroeconomic state level. While individuals can hide fractions of private wealth, a modern state cannot fund an offensive war or maintain industrial grids via hidden crypto wallets. States and oligarchs rely on sovereign wealth funds, real estate, corporate equity, state-owned energy exports, and international central bank reserves. Because the 51% majority bloc inherently controls the dominant share of global banking clearinghouses and shipping lanes, those assets are instantly visible and lockable.</p>
-                    <p><strong>Q: If the Secondary Contagion Tariff forces neutral countries to comply, won't that spark a global trade war?</strong><br>
-                    A: The Contagion Tariff functions as an economic deterrent; its mathematical certainty minimizes the need for application. A neutral nation faces a simple economic choice: maintain trade with one isolated aggressor, or maintain trade with the 51% bloc controlling the majority of global consumer markets. The sheer economic weight of the 51% bloc compels compliance prior to escalation.</p>
-                </div>
-            </details>
-
-            <details>
-                <summary>Sovereignty &amp; Neo-Colonialism</summary>
-                <div class="details-content">
-                    <p><strong>Q: Why would a developing nation allow independent union crews to operate on its soil? Isn't this neo-colonialism?</strong><br>
-                    A: Traditional neo-colonialism relies on debt traps, high-interest loans, and political leverage. Article III operates under an Anti-Debt Guarantee: fully funded, union-built infrastructure without loan repayments or political favors. Furthermore, the 75% local labor mandate ensures wealth is injected directly into the local working class rather than extracted by foreign multinationals.</p>
-                    <p><strong>Q: Doesn't the "Zero-State Routing Protocol" violate national sovereignty by bypassing elected governments?</strong><br>
-                    A: No. Nations consent to the protocol upon ratification, and Article II Section 1 guarantees full local sovereignty over domestic laws, policing, and internal affairs. The Constitution simply establishes that for free, fully funded infrastructure and disaster relief, capital flows directly to contractors and workers performing the physical labor, rather than state treasuries.</p>
-                </div>
-            </details>
-
-            <details>
-                <summary>Operations &amp; Heavy Industry</summary>
-                <div class="details-content">
-                    <p><strong>Q: The Three-Bid System and Union mandates involve procedural steps. In a sudden disaster, won't this cause dangerous delays?</strong><br>
-                    A: The framework explicitly separates acute emergency containment from long-term reconstruction. Phase 1 uses the First-Response Retainer System—pre-vetted emergency union crews deployed immediately to stop active damage. Phase 2 (Long-Term Remediation) defaults to the Three-Bid Middle Selection process to guarantee proper cost-engineering and structural safety.</p>
-                    <p><strong>Q: If local workers in a war-torn region lack specialized technical skills, how can the 75% local labor mandate be met?</strong><br>
-                    A: This is managed via the Hybrid Mentorship Model (Article I, Section 4). The remaining 25% of the workforce consists of specialized international union journey-level workers and engineers who manage technical execution and run the job site as an active apprenticeship program. Upon project completion, the host nation receives both fully repaired infrastructure and a highly skilled workforce.</p>
-                </div>
-            </details>
-        </section>
-
-    </main>
-
-    <!-- Footer with Contact, Instagram, and Facebook Links -->
-    <footer id="contact">
-        <p><strong>WORLD TREATY FOR EARTH</strong></p>
-        <p>The Constitution for Earth | Making War Too Costly to Wage</p>
-
-        <div class="footer-links">
-            <div>
-                Contact us: 
-                <a href="#" id="obfuscated-email" class="social-link">
-                    Click here to reveal address
-                </a>
-            </div>
-            
-            <span class="divider">|</span>
-            
-            <a href="https://instagram.com/treatyforearth" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-link">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-                Instagram
-            </a>
-
-            <span class="divider">|</span>
-
-            <a href="https://www.facebook.com/profile.php?id=61593262815369" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
-                Facebook
-            </a>
-        </div>
-
-        <script>
-            // 1. Obfuscated email builder
-            var user = "policy";
-            var domain = "worldtreaty.earth";
-            var contactLink = document.getElementById("obfuscated-email");
-            contactLink.href = "mailto:" + user + "@" + domain;
-            contactLink.innerHTML = user + "@" + domain;
-
-            // 2. Top Scroll Reading Progress Bar
-            window.addEventListener("scroll", function() {
-                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-                var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                var progress = (scrollTop / scrollHeight) * 100;
-                document.getElementById("progress-bar").style.width = progress + "%";
-            });
-
-            // 3. Smooth Scroll-Reveal for Sections
-            var sections = document.querySelectorAll("section");
-            var observer = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("visible");
-                    }
-                });
-            }, { threshold: 0.12 });
-
-            sections.forEach(function(sec) {
-                observer.observe(sec);
-            });
-        </script>
-    </footer>
-
-</body>
-</html>
+    masterBtn.textContent = allExpanded ? '− Collapse All Articles' : '+ Expand All Articles';
+  }
+</script>
 
